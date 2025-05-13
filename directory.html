@@ -70,11 +70,49 @@
             border-top: 1px solid #eee;
             padding-top: 20px;
         }
+                /* Add these to your existing CSS */
+        .animation-details {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .duration {
+            font-size: 12px;
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .copy-link {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #0366d6;
+            padding: 3px;
+            margin-left: 5px;
+            border-radius: 3px;
+        }
+
+        .copy-link:hover {
+            background-color: #f0f0f0;
+        }
+
+        .copy-tooltip {
+            position: fixed;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 100;
+            transition: opacity 0.3s;
+        }
     </style>
 </head>
 <body>
     <h1>FS Animation Directory</h1>
-    <p>Lottie animations by project</p>
     
     <div class="projects">
         <div class="project-card">
@@ -82,7 +120,16 @@
             <div class="animations">
                 <div class="animation-item">
                     <div class="preview" id="preview-overview-zoom"></div>
-                    <a href="./index.html?animation=zoom&project=overview" target="_blank">zoom</a>
+                    <div class="animation-details">
+                        <a href="./index.html?animation=zoom&project=overview" target="_blank">zoom</a>
+                        <span class="duration" id="duration-overview-zoom">...</span>
+                        <button class="copy-link" data-animation="zoom" data-project="overview">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                        </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Add more animations as needed -->
@@ -124,6 +171,71 @@
                 autoplay: true
             });
         });
+
+        // Function to calculate and display animation length
+function displayAnimationLength(jsonPath, displayElementId) {
+  fetch(jsonPath)
+    .then(response => response.json())
+    .then(data => {
+      // Calculate duration based on frames and framerate
+      const frameCount = data.op - data.ip;
+      const frameRate = data.fr;
+      const durationSeconds = frameCount / frameRate;
+      
+      // Format as seconds or minutes:seconds
+      let durationText;
+      if (durationSeconds < 60) {
+        durationText = `${durationSeconds.toFixed(1)}s`;
+      } else {
+        const minutes = Math.floor(durationSeconds / 60);
+        const seconds = Math.floor(durationSeconds % 60);
+        durationText = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+      }
+      
+      // Display the duration
+      document.getElementById(displayElementId).textContent = durationText;
+    })
+    .catch(error => {
+      console.error('Error loading animation data:', error);
+      document.getElementById(displayElementId).textContent = '?';
+    });
+}
+
+// Setup "Copy Link" functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Create tooltip element for copy feedback
+  const tooltip = document.createElement('div');
+  tooltip.className = 'copy-tooltip';
+  tooltip.style.opacity = '0';
+  document.body.appendChild(tooltip);
+  
+  // Add click handlers to all copy buttons
+  document.querySelectorAll('.copy-link').forEach(button => {
+    button.addEventListener('click', function(e) {
+      const animation = this.dataset.animation;
+      const project = this.dataset.project;
+      const fullUrl = `${window.location.origin}/lottie-fs/?animation=${animation}&project=${project}`;
+      
+      // Copy to clipboard
+      navigator.clipboard.writeText(fullUrl).then(() => {
+        // Show tooltip
+        tooltip.textContent = 'Copied!';
+        tooltip.style.opacity = '1';
+        tooltip.style.left = (e.pageX + 10) + 'px';
+        tooltip.style.top = (e.pageY + 10) + 'px';
+        
+        // Hide tooltip after a short delay
+        setTimeout(() => {
+          tooltip.style.opacity = '0';
+        }, 1500);
+      });
+    });
+  });
+  
+  // Calculate and display durations for all animations
+  displayAnimationLength('animations/overview/zoom.json', 'duration-overview-zoom');
+  // Add similar lines for each of your animations
+});
     </script>
 </body>
 </html>
