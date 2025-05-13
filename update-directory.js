@@ -30,6 +30,7 @@ async function updateDirectory() {
   // Generate project cards HTML
   let projectCardsHtml = '';
   let durationCalculatorJs = '';
+  let previewLoaderJs = '';
   
   for (const projectFolder of projectFolders) {
     console.log(`Processing project: ${projectFolder}`);
@@ -67,6 +68,9 @@ async function updateDirectory() {
                 </div>`;
       
       // Add to preview loading JavaScript
+      previewLoaderJs += `  loadPreviewAnimation('animations/${projectFolder}/${animName}.json', '${previewId}');\n`;
+      
+      // Add to duration calculation JavaScript
       durationCalculatorJs += `  displayAnimationLength('animations/${projectFolder}/${animName}.json', '${durationId}');\n`;
     }
     
@@ -76,10 +80,48 @@ async function updateDirectory() {
         </div>`;
   }
   
+  // Create the preview loading function to include in the script
+  const previewLoaderFunction = `
+        // Function to load preview animations
+        function loadPreviewAnimation(jsonPath, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            fetch(jsonPath)
+                .then(response => response.json())
+                .then(animationData => {
+                    lottie.loadAnimation({
+                        container: container,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        animationData,
+                        rendererSettings: {
+                            preserveAspectRatio: 'xMidYMid slice'
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading preview:', error);
+                    container.innerHTML = '<p>Error</p>';
+                });
+        }
+    `;
+  
   // Replace placeholders in template
   let outputHtml = template
     .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml)
     .replace('/* DURATION_CALCULATOR_PLACEHOLDER */', durationCalculatorJs);
+  
+  // Insert preview loading function and calls before the closing script tag
+  outputHtml = outputHtml.replace(
+    '        });',
+    `        ${previewLoaderFunction}
+            
+            // Load all preview animations
+            ${previewLoaderJs}
+        });`
+  );
   
   // Write the output file
   fs.writeFileSync(OUTPUT_PATH, outputHtml);

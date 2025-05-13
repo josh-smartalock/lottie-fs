@@ -116,7 +116,7 @@
             <h2>Overview</h2>
             <div class="animations">
                 <div class="animation-item">
-                    <div class="preview" id="preview-FullOverview-overview"></div>
+                    <div class="preview" id="preview-overview-FullOverview"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=FullOverview&project=overview" target="_blank">FullOverview</a>
                         <span class="duration" id="duration-overview-FullOverview">...</span>
@@ -177,7 +177,38 @@
                 .catch(error => {
                     console.error('Error loading animation data:', error);
                     document.getElementById(displayElementId).textContent = '?';
+                
+        // Function to load preview animations
+        function loadPreviewAnimation(jsonPath, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            fetch(jsonPath)
+                .then(response => response.json())
+                .then(animationData => {
+                    lottie.loadAnimation({
+                        container: container,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        animationData,
+                        rendererSettings: {
+                            preserveAspectRatio: 'xMidYMid slice'
+                        }
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading preview:', error);
+                    container.innerHTML = '<p>Error</p>';
                 });
+        }
+    
+            
+            // Load all preview animations
+              loadPreviewAnimation('animations/overview/FullOverview.json', 'preview-overview-FullOverview');
+  loadPreviewAnimation('animations/overview/RadioOccupancyHeight.json', 'preview-overview-RadioOccupancyHeight');
+
+        });
         }
 
         // Setup "Copy Link" functionality
