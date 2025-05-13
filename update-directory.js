@@ -29,7 +29,6 @@ async function updateDirectory() {
   
   // Generate project cards HTML
   let projectCardsHtml = '';
-  let durationCalculatorJs = '';
   
   for (const projectFolder of projectFolders) {
     console.log(`Processing project: ${projectFolder}`);
@@ -49,7 +48,6 @@ async function updateDirectory() {
       const animName = path.basename(animFile, '.json');
       const animTitle = getTitleFromFilename(animName);
       const previewId = `preview-${projectFolder}-${animName}`;
-      const durationId = `duration-${projectFolder}-${animName}`;
       const animPath = `animations/${projectFolder}/${animName}.json`;
       
       projectCardsHtml += `
@@ -57,18 +55,14 @@ async function updateDirectory() {
                     <div class="preview" id="${previewId}" data-animation-path="${animPath}"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=${animName}&project=${projectFolder}" target="_blank" class="animation-name">${animTitle}</a>
-                        <span class="duration" id="${durationId}">...</span>
                         <button class="copy-link" data-animation="${animName}" data-project="${projectFolder}">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>`;
-      
-      // Add to duration calculation JavaScript
-      durationCalculatorJs += `  displayAnimationLength('${animPath}', '${durationId}');\n`;
     }
     
     // Close project card
@@ -79,8 +73,7 @@ async function updateDirectory() {
   
   // Replace placeholders in template
   let outputHtml = template
-    .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml)
-    .replace('/* DURATION_CALCULATOR_PLACEHOLDER */', durationCalculatorJs);
+    .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml);
   
   // Write the output file
   fs.writeFileSync(OUTPUT_PATH, outputHtml);
