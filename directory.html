@@ -73,8 +73,8 @@
     </style>
 </head>
 <body>
-    <h1>Lottie Animation Directory</h1>
-    <p>Browse available Lottie animations by project</p>
+    <h1>FS Animation Directory</h1>
+    <p>Lottie animations by project</p>
     
     <div class="projects">
         <div class="project-card">
@@ -89,32 +89,7 @@
             </div>
         </div>
         
-        <div class="project-card">
-            <h2>Project Y</h2>
-            <div class="animations">
-                <div class="animation-item">
-                    <div class="preview" id="preview-project-y-hero"></div>
-                    <a href="?animation=hero&project=project_y" target="_blank">hero</a>
-                </div>
-                <div class="animation-item">
-                    <div class="preview" id="preview-project-y-feature"></div>
-                    <a href="?animation=feature&project=project_y" target="_blank">feature</a>
-                </div>
-                <!-- Add more animations as needed -->
-            </div>
-        </div>
         
-        <div class="project-card">
-            <h2>Shared Animations</h2>
-            <div class="animations">
-                <div class="animation-item">
-                    <div class="preview" id="preview-shared-loading"></div>
-                    <a href="?animation=loading&project=shared" target="_blank">loading</a>
-                </div>
-                <!-- Add more animations as needed -->
-            </div>
-        </div>
-    </div>
     
     <footer>
         <p>Lottie Animation Library - <a href="https://github.com/josh-smartalock/lottie">GitHub Repository</a></p>
@@ -125,18 +100,11 @@
     <script>
         // Load preview animations
         document.addEventListener('DOMContentLoaded', function() {
-            // This would load preview animations from their JSON files
-            // In a real implementation, you might want to use smaller preview versions
             
             // Example for Product X animations
             loadLottieAnimation('preview-overview-zoom', 'animations/overview/zoom.json', {
                 loop: true,
-                autoplay: true
-            });
-            
-            loadLottieAnimation('preview-product-x-animation2', 'animations/product_x/animation2.json', {
-                loop: true,
-                autoplay: true
+                autoplay: false
             });
             
             // Example for Project Y animations
