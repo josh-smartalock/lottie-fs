@@ -131,7 +131,8 @@ async function updateDirectory() {
                             }
                         });
                         
-                        // Stop at first frame to display static image
+                        // Force it to render the first frame
+                        animation.goToAndStop(1, true);
                         animation.goToAndStop(0, true);
                         
                         // Add events to handle animation errors
@@ -166,6 +167,8 @@ async function updateDirectory() {
                 if (animation) {
                     try {
                         animation.pause();
+                        // Go back to the first frame when no longer hovering
+                        animation.goToAndStop(0, true);
                     } catch (error) {
                         console.error("Error pausing animation for " + jsonPath + ":", error);
                     }
@@ -178,6 +181,18 @@ async function updateDirectory() {
   let outputHtml = template
     .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml)
     .replace('/* DURATION_CALCULATOR_PLACEHOLDER */', durationCalculatorJs);
+  
+  // Fix CSS for the preview container to ensure animations are properly displayed
+  outputHtml = outputHtml.replace(
+    '.preview {',
+    '.preview {\n            position: relative;\n            overflow: visible;'
+  );
+  
+  // Fix the padding-bottom to improve aspect ratio and visibility
+  outputHtml = outputHtml.replace(
+    'padding-bottom: 100%;',
+    'padding-bottom: 75%;'
+  );
   
   // Insert hover animation function and calls before the closing script tag
   outputHtml = outputHtml.replace(

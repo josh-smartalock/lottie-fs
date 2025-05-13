@@ -49,13 +49,22 @@
             transform: translateY(-2px);
         }
         .preview {
+            position: relative;
             height: 100px;
             width: 100%;
-            padding-bottom: 50%;
+            padding-bottom: 75%;
             background-color: #f9f9f9;
             border-radius: 4px;
             margin-bottom: 8px;
-            overflow: hidden;
+            overflow: visible;
+        }
+        /* Ensure inner divs take up full space */
+        .preview > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
         a {
             color: #0366d6;
@@ -148,6 +157,117 @@
                     console.error('Error loading animation data:', error);
                     document.getElementById(displayElementId).textContent = '?';
                 });
+        }
+
+        // Function to set up hover-based animation loading with a better rendering approach
+        function setupHoverAnimation(jsonPath, containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.error("Container not found: " + containerId);
+                return;
+            }
+            
+            // Make sure the container is visible
+            container.style.display = 'block';
+            container.style.position = 'relative';
+            
+            const parentItem = container.closest('.animation-item');
+            if (!parentItem) {
+                console.error("Parent animation item not found for: " + containerId);
+                return;
+            }
+            
+            let animation = null;
+            
+            // Create a dedicated animation container if it doesn't exist
+            let containerInner = container.querySelector('div');
+            if (!containerInner) {
+                containerInner = document.createElement('div');
+                containerInner.style.position = 'absolute';
+                containerInner.style.top = '0';
+                containerInner.style.left = '0';
+                containerInner.style.width = '100%';
+                containerInner.style.height = '100%';
+                container.appendChild(containerInner);
+            }
+            
+            // Add a loading indicator
+            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Loading...</div>';
+            
+            // Load the animation
+            fetch(jsonPath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to fetch " + jsonPath + ": " + response.status + " " + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(animationData => {
+                    try {
+                        // Clear the loading indicator
+                        containerInner.innerHTML = '';
+                        
+                        // Create the animation with a visible first frame
+                        animation = lottie.loadAnimation({
+                            container: containerInner,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: false,
+                            animationData: animationData,
+                            rendererSettings: {
+                                preserveAspectRatio: 'xMidYMid slice',
+                                clearCanvas: false
+                            }
+                        });
+                        
+                        // Wait for animation to be ready then show first frame
+                        animation.addEventListener('DOMLoaded', function() {
+                            // Force redraw by going to frame 1 then back to 0
+                            animation.goToAndStop(1, true);
+                            setTimeout(() => {
+                                animation.goToAndStop(0, true);
+                            }, 50);
+                        });
+                        
+                        // Handle animation errors
+                        animation.addEventListener('error', (error) => {
+                            console.error("Animation error for " + jsonPath + ":", error);
+                            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                        });
+                        
+                        console.log("Successfully loaded preview for: " + jsonPath);
+                    } catch (error) {
+                        console.error("Error initializing animation for " + jsonPath + ":", error);
+                        containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                    }
+                })
+                .catch(error => {
+                    console.error("Error loading animation data for " + jsonPath + ":", error);
+                    containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                });
+            
+            // Set up hover events
+            parentItem.addEventListener('mouseenter', function() {
+                if (animation) {
+                    try {
+                        animation.play();
+                    } catch (error) {
+                        console.error("Error playing animation for " + jsonPath + ":", error);
+                    }
+                }
+            });
+            
+            parentItem.addEventListener('mouseleave', function() {
+                if (animation) {
+                    try {
+                        animation.pause();
+                        // Go back to the first frame
+                        animation.goToAndStop(0, true);
+                    } catch (error) {
+                        console.error("Error pausing animation for " + jsonPath + ":", error);
+                    }
+                }
+            });
         }
 
         // Setup "Copy Link" functionality
