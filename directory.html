@@ -143,6 +143,24 @@
                 </div>
             </div>
         </div>
+        <div class="project-card">
+            <h2>Test</h2>
+            <div class="animations">
+                <div class="animation-item">
+                    <div class="preview" id="preview-test-test"></div>
+                    <div class="animation-details">
+                        <a href="./index.html?animation=test&project=test" target="_blank">Test</a>
+                        <span class="duration" id="duration-test-test">...</span>
+                        <button class="copy-link" data-animation="test" data-project="test">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <footer>
@@ -207,6 +225,7 @@
             // Load all preview animations
               loadPreviewAnimation('animations/overview/FullOverview.json', 'preview-overview-FullOverview');
   loadPreviewAnimation('animations/overview/RadioOccupancyHeight.json', 'preview-overview-RadioOccupancyHeight');
+  loadPreviewAnimation('animations/test/test.json', 'preview-test-test');
 
         });
         }
@@ -245,6 +264,7 @@
             // Calculate and display durations for all animations
               displayAnimationLength('animations/overview/FullOverview.json', 'duration-overview-FullOverview');
   displayAnimationLength('animations/overview/RadioOccupancyHeight.json', 'duration-overview-RadioOccupancyHeight');
+  displayAnimationLength('animations/test/test.json', 'duration-test-test');
 
         });
     </script>
