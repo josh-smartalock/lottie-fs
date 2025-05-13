@@ -85,45 +85,90 @@ async function updateDirectory() {
         // Function to set up hover-based animation loading
         function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
-            if (!container) return;
+            if (!container) {
+                console.error(`Container not found: ${containerId}`);
+                return;
+            }
             
             const parentItem = container.closest('.animation-item');
+            if (!parentItem) {
+                console.error(`Parent animation item not found for: ${containerId}`);
+                return;
+            }
+            
             let animation = null;
             
-            // Load the animation immediately but paused
+            // Add a loading indicator
+            const containerInner = container.querySelector('div');
+            if (!containerInner) {
+                console.error(`Inner container div not found for: ${containerId}`);
+                return;
+            }
+            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Loading...</div>';
+            
+            // Load the animation with better error handling
             fetch(jsonPath)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Failed to fetch ${jsonPath}: ${response.status} ${response.statusText}`);
+                    }
+                    return response.json();
+                })
                 .then(animationData => {
-                    // Create the animation immediately but paused
-                    animation = lottie.loadAnimation({
-                        container: container.querySelector('div'),
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: false, // Don't autoplay
-                        animationData,
-                        rendererSettings: {
-                            preserveAspectRatio: 'xMidYMid slice'
-                        }
-                    });
-                    
-                    // Stop at first frame to display static image
-                    animation.goToAndStop(0, true);
+                    try {
+                        // Clear the loading indicator
+                        containerInner.innerHTML = '';
+                        
+                        // Create the animation immediately but paused
+                        animation = lottie.loadAnimation({
+                            container: containerInner,
+                            renderer: 'svg',
+                            loop: true,
+                            autoplay: false, // Don't autoplay
+                            animationData,
+                            rendererSettings: {
+                                preserveAspectRatio: 'xMidYMid slice'
+                            }
+                        });
+                        
+                        // Stop at first frame to display static image
+                        animation.goToAndStop(0, true);
+                        
+                        // Add events to handle animation errors
+                        animation.addEventListener('error', (error) => {
+                            console.error(`Animation error for ${jsonPath}:`, error);
+                            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                        });
+                        
+                        console.log(`Successfully loaded preview for: ${jsonPath}`);
+                    } catch (error) {
+                        console.error(`Error initializing animation for ${jsonPath}:`, error);
+                        containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                    }
                 })
                 .catch(error => {
-                    console.error('Error loading animation data:', error);
-                    container.innerHTML = '<p>Error</p>';
+                    console.error(`Error loading animation data for ${jsonPath}:`, error);
+                    containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
                 });
             
-            // Set up hover events
+            // Set up hover events with error handling
             parentItem.addEventListener('mouseenter', function() {
                 if (animation) {
-                    animation.play();
+                    try {
+                        animation.play();
+                    } catch (error) {
+                        console.error(`Error playing animation for ${jsonPath}:`, error);
+                    }
                 }
             });
             
             parentItem.addEventListener('mouseleave', function() {
                 if (animation) {
-                    animation.pause();
+                    try {
+                        animation.pause();
+                    } catch (error) {
+                        console.error(`Error pausing animation for ${jsonPath}:`, error);
+                    }
                 }
             });
         }
