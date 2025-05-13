@@ -53,8 +53,8 @@ async function updateDirectory() {
       const durationId = `duration-${projectFolder}-${animName}`;
       
       projectCardsHtml += `
-                <div class="animation-item">
-                    <div class="preview" id="${previewId}"></div>
+                <div class="animation-item" data-animation="${animName}" data-project="${projectFolder}">
+                    <div class="preview" id="${previewId}"><div></div></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=${animName}&project=${projectFolder}" target="_blank">${animTitle}</a>
                         <span class="duration" id="${durationId}">...</span>
@@ -67,8 +67,8 @@ async function updateDirectory() {
                     </div>
                 </div>`;
       
-      // Add to preview loading JavaScript
-      previewLoaderJs += `  loadPreviewAnimation('animations/${projectFolder}/${animName}.json', '${previewId}');\n`;
+      // Add to preview loading JavaScript - now using the hover-based loading
+      previewLoaderJs += `  setupHoverAnimation('animations/${projectFolder}/${animName}.json', '${previewId}');\n`;
       
       // Add to duration calculation JavaScript
       durationCalculatorJs += `  displayAnimationLength('animations/${projectFolder}/${animName}.json', '${durationId}');\n`;
@@ -80,18 +80,34 @@ async function updateDirectory() {
         </div>`;
   }
   
-  // Create the preview loading function to include in the script
-  const previewLoaderFunction = `
-        // Function to load preview animations
-        function loadPreviewAnimation(jsonPath, containerId) {
+  // Create the hover animation function to include in the script
+  const hoverAnimationFunction = `
+        // Function to set up hover-based animation loading
+        function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
             
+            const parentItem = container.closest('.animation-item');
+            let animation = null;
+            let animationData = null;
+            
+            // Preload the animation data
             fetch(jsonPath)
                 .then(response => response.json())
-                .then(animationData => {
-                    lottie.loadAnimation({
-                        container: container,
+                .then(data => {
+                    animationData = data;
+                })
+                .catch(error => {
+                    console.error('Error loading animation data:', error);
+                    container.innerHTML = '<p>Error</p>';
+                });
+            
+            // Set up hover events
+            parentItem.addEventListener('mouseenter', function() {
+                if (!animation && animationData) {
+                    // Create animation only when needed
+                    animation = lottie.loadAnimation({
+                        container: container.querySelector('div'),
                         renderer: 'svg',
                         loop: true,
                         autoplay: true,
@@ -100,11 +116,18 @@ async function updateDirectory() {
                             preserveAspectRatio: 'xMidYMid slice'
                         }
                     });
-                })
-                .catch(error => {
-                    console.error('Error loading preview:', error);
-                    container.innerHTML = '<p>Error</p>';
-                });
+                } else if (animation) {
+                    // If animation exists, just play it
+                    animation.play();
+                }
+            });
+            
+            parentItem.addEventListener('mouseleave', function() {
+                if (animation) {
+                    // Pause animation when not hovering
+                    animation.pause();
+                }
+            });
         }
     `;
   
@@ -113,12 +136,12 @@ async function updateDirectory() {
     .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml)
     .replace('/* DURATION_CALCULATOR_PLACEHOLDER */', durationCalculatorJs);
   
-  // Insert preview loading function and calls before the closing script tag
+  // Insert hover animation function and calls before the closing script tag
   outputHtml = outputHtml.replace(
     '        });',
-    `        ${previewLoaderFunction}
+    `        ${hoverAnimationFunction}
             
-            // Load all preview animations
+            // Set up all hover animations
             ${previewLoaderJs}
         });`
   );
