@@ -115,8 +115,8 @@
         <div class="project-card">
             <h2>Overview</h2>
             <div class="animations">
-                <div class="animation-item">
-                    <div class="preview" id="preview-overview-FullOverview"></div>
+                <div class="animation-item" data-animation="FullOverview" data-project="overview">
+                    <div class="preview" id="preview-overview-FullOverview"><div></div></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=FullOverview&project=overview" target="_blank">FullOverview</a>
                         <span class="duration" id="duration-overview-FullOverview">...</span>
@@ -128,8 +128,8 @@
                         </button>
                     </div>
                 </div>
-                <div class="animation-item">
-                    <div class="preview" id="preview-overview-RadioOccupancyHeight"></div>
+                <div class="animation-item" data-animation="RadioOccupancyHeight" data-project="overview">
+                    <div class="preview" id="preview-overview-RadioOccupancyHeight"><div></div></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=RadioOccupancyHeight&project=overview" target="_blank">RadioOccupancyHeight</a>
                         <span class="duration" id="duration-overview-RadioOccupancyHeight">...</span>
@@ -146,8 +146,8 @@
         <div class="project-card">
             <h2>Test</h2>
             <div class="animations">
-                <div class="animation-item">
-                    <div class="preview" id="preview-test-test"></div>
+                <div class="animation-item" data-animation="test" data-project="test">
+                    <div class="preview" id="preview-test-test"><div></div></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=test&project=test" target="_blank">Test</a>
                         <span class="duration" id="duration-test-test">...</span>
@@ -196,16 +196,32 @@
                     console.error('Error loading animation data:', error);
                     document.getElementById(displayElementId).textContent = '?';
                 
-        // Function to load preview animations
-        function loadPreviewAnimation(jsonPath, containerId) {
+        // Function to set up hover-based animation loading
+        function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
             if (!container) return;
             
+            const parentItem = container.closest('.animation-item');
+            let animation = null;
+            let animationData = null;
+            
+            // Preload the animation data
             fetch(jsonPath)
                 .then(response => response.json())
-                .then(animationData => {
-                    lottie.loadAnimation({
-                        container: container,
+                .then(data => {
+                    animationData = data;
+                })
+                .catch(error => {
+                    console.error('Error loading animation data:', error);
+                    container.innerHTML = '<p>Error</p>';
+                });
+            
+            // Set up hover events
+            parentItem.addEventListener('mouseenter', function() {
+                if (!animation && animationData) {
+                    // Create animation only when needed
+                    animation = lottie.loadAnimation({
+                        container: container.querySelector('div'),
                         renderer: 'svg',
                         loop: true,
                         autoplay: true,
@@ -214,18 +230,25 @@
                             preserveAspectRatio: 'xMidYMid slice'
                         }
                     });
-                })
-                .catch(error => {
-                    console.error('Error loading preview:', error);
-                    container.innerHTML = '<p>Error</p>';
-                });
+                } else if (animation) {
+                    // If animation exists, just play it
+                    animation.play();
+                }
+            });
+            
+            parentItem.addEventListener('mouseleave', function() {
+                if (animation) {
+                    // Pause animation when not hovering
+                    animation.pause();
+                }
+            });
         }
     
             
-            // Load all preview animations
-              loadPreviewAnimation('animations/overview/FullOverview.json', 'preview-overview-FullOverview');
-  loadPreviewAnimation('animations/overview/RadioOccupancyHeight.json', 'preview-overview-RadioOccupancyHeight');
-  loadPreviewAnimation('animations/test/test.json', 'preview-test-test');
+            // Set up all hover animations
+              setupHoverAnimation('animations/overview/FullOverview.json', 'preview-overview-FullOverview');
+  setupHoverAnimation('animations/overview/RadioOccupancyHeight.json', 'preview-overview-RadioOccupancyHeight');
+  setupHoverAnimation('animations/test/test.json', 'preview-test-test');
 
         });
         }
