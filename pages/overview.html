@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview Animations</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="lottie-container" style="width: 100%; height: 100%;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script>
+        // This file only loads animations from the "product_x" folder
+        const animations = {}; // Will be populated after fetching the JSON files
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            const animationName = params.get('animation');
+            
+            if (!animationName) {
+                document.getElementById('lottie-container').innerHTML = '<p>Please specify an animation using ?animation=name</p>';
+                return;
+            }
+            
+            // Load the animation JSON
+            fetch(`../animations/overview/${animationName}.json`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Animation not found');
+                    }
+                    return response.json();
+                })
+                .then(animationData => {
+                    lottie.loadAnimation({
+                        container: document.getElementById('lottie-container'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: true,
+                        animationData,
+                        rendererSettings: {
+                            filterSize: {
+                                width: '200%',
+                                height: '200%',
+                                x: '-50%',
+                                y: '-50%'
+                            }
+                        }
+                    });
+                })
+                .catch(error => {
+                    document.getElementById('lottie-container').innerHTML = 
+                        `<p>Error loading animation: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html>
