@@ -86,13 +86,13 @@ async function updateDirectory() {
         function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
             if (!container) {
-                console.error(`Container not found: ${containerId}`);
+                console.error("Container not found: " + containerId);
                 return;
             }
             
             const parentItem = container.closest('.animation-item');
             if (!parentItem) {
-                console.error(`Parent animation item not found for: ${containerId}`);
+                console.error("Parent animation item not found for: " + containerId);
                 return;
             }
             
@@ -101,7 +101,7 @@ async function updateDirectory() {
             // Add a loading indicator
             const containerInner = container.querySelector('div');
             if (!containerInner) {
-                console.error(`Inner container div not found for: ${containerId}`);
+                console.error("Inner container div not found for: " + containerId);
                 return;
             }
             containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Loading...</div>';
@@ -110,7 +110,7 @@ async function updateDirectory() {
             fetch(jsonPath)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`Failed to fetch ${jsonPath}: ${response.status} ${response.statusText}`);
+                        throw new Error("Failed to fetch " + jsonPath + ": " + response.status + " " + response.statusText);
                     }
                     return response.json();
                 })
@@ -136,18 +136,18 @@ async function updateDirectory() {
                         
                         // Add events to handle animation errors
                         animation.addEventListener('error', (error) => {
-                            console.error(`Animation error for ${jsonPath}:`, error);
+                            console.error("Animation error for " + jsonPath + ":", error);
                             containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
                         });
                         
-                        console.log(`Successfully loaded preview for: ${jsonPath}`);
+                        console.log("Successfully loaded preview for: " + jsonPath);
                     } catch (error) {
-                        console.error(`Error initializing animation for ${jsonPath}:`, error);
+                        console.error("Error initializing animation for " + jsonPath + ":", error);
                         containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
                     }
                 })
                 .catch(error => {
-                    console.error(`Error loading animation data for ${jsonPath}:`, error);
+                    console.error("Error loading animation data for " + jsonPath + ":", error);
                     containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
                 });
             
@@ -157,7 +157,7 @@ async function updateDirectory() {
                     try {
                         animation.play();
                     } catch (error) {
-                        console.error(`Error playing animation for ${jsonPath}:`, error);
+                        console.error("Error playing animation for " + jsonPath + ":", error);
                     }
                 }
             });
@@ -167,7 +167,7 @@ async function updateDirectory() {
                     try {
                         animation.pause();
                     } catch (error) {
-                        console.error(`Error pausing animation for ${jsonPath}:`, error);
+                        console.error("Error pausing animation for " + jsonPath + ":", error);
                     }
                 }
             });
