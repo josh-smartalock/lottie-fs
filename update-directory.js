@@ -124,7 +124,7 @@ async function updateDirectory() {
                             container: containerInner,
                             renderer: 'svg',
                             loop: true,
-                            autoplay: false, // Don't autoplay
+                            autoplay: true, // autoplay
                             animationData,
                             rendererSettings: {
                                 preserveAspectRatio: 'xMidYMid slice'
