@@ -89,13 +89,25 @@ async function updateDirectory() {
             
             const parentItem = container.closest('.animation-item');
             let animation = null;
-            let animationData = null;
             
-            // Preload the animation data
+            // Load the animation immediately but paused
             fetch(jsonPath)
                 .then(response => response.json())
-                .then(data => {
-                    animationData = data;
+                .then(animationData => {
+                    // Create the animation immediately but paused
+                    animation = lottie.loadAnimation({
+                        container: container.querySelector('div'),
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: false, // Don't autoplay
+                        animationData,
+                        rendererSettings: {
+                            preserveAspectRatio: 'xMidYMid slice'
+                        }
+                    });
+                    
+                    // Stop at first frame to display static image
+                    animation.goToAndStop(0, true);
                 })
                 .catch(error => {
                     console.error('Error loading animation data:', error);
@@ -104,27 +116,13 @@ async function updateDirectory() {
             
             // Set up hover events
             parentItem.addEventListener('mouseenter', function() {
-                if (!animation && animationData) {
-                    // Create animation only when needed
-                    animation = lottie.loadAnimation({
-                        container: container.querySelector('div'),
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        animationData,
-                        rendererSettings: {
-                            preserveAspectRatio: 'xMidYMid slice'
-                        }
-                    });
-                } else if (animation) {
-                    // If animation exists, just play it
+                if (animation) {
                     animation.play();
                 }
             });
             
             parentItem.addEventListener('mouseleave', function() {
                 if (animation) {
-                    // Pause animation when not hovering
                     animation.pause();
                 }
             });
