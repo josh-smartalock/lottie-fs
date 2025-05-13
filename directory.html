@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             line-height: 1.6;
@@ -17,9 +17,9 @@
             padding-bottom: 10px;
         }
         .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             margin: 30px 0;
         }
         .project-card {
@@ -34,8 +34,8 @@
         }
         .animations {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
         }
         .animation-item {
             border: 1px solid #eee;
@@ -50,9 +50,7 @@
         }
         .preview {
             position: relative;
-            overflow: visible;
-            position: relative;
-            height: 100px;
+            height: 0;
             width: 100%;
             padding-bottom: 75%;
             background-color: #f9f9f9;
@@ -88,8 +86,15 @@
             justify-content: space-between;
             margin-top: 8px;
         }
-        .duration {
+        .animation-name {
             font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+        .duration {
+            font-size: 11px;
             color: #666;
             margin-left: 5px;
         }
@@ -127,26 +132,26 @@
         <div class="project-card">
             <h2>Overview</h2>
             <div class="animations">
-                <div class="animation-item" data-animation="FullOverview" data-project="overview">
-                    <div class="preview" id="preview-overview-FullOverview"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-overview-FullOverview" data-animation-path="animations/overview/FullOverview.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FullOverview&project=overview" target="_blank">FullOverview</a>
+                        <a href="./index.html?animation=FullOverview&project=overview" target="_blank" class="animation-name">FullOverview</a>
                         <span class="duration" id="duration-overview-FullOverview">...</span>
                         <button class="copy-link" data-animation="FullOverview" data-project="overview">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="RadioOccupancyHeight" data-project="overview">
-                    <div class="preview" id="preview-overview-RadioOccupancyHeight"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-overview-RadioOccupancyHeight" data-animation-path="animations/overview/RadioOccupancyHeight.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=RadioOccupancyHeight&project=overview" target="_blank">RadioOccupancyHeight</a>
+                        <a href="./index.html?animation=RadioOccupancyHeight&project=overview" target="_blank" class="animation-name">RadioOccupancyHeight</a>
                         <span class="duration" id="duration-overview-RadioOccupancyHeight">...</span>
                         <button class="copy-link" data-animation="RadioOccupancyHeight" data-project="overview">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
@@ -158,182 +163,182 @@
         <div class="project-card">
             <h2>UI Guide</h2>
             <div class="animations">
-                <div class="animation-item" data-animation="App_SitStand" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-App_SitStand"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-App_SitStand" data-animation-path="animations/UI Guide/App_SitStand.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=App_SitStand&project=UI Guide" target="_blank">App SitStand</a>
+                        <a href="./index.html?animation=App_SitStand&project=UI Guide" target="_blank" class="animation-name">App SitStand</a>
                         <span class="duration" id="duration-UI Guide-App_SitStand">...</span>
                         <button class="copy-link" data-animation="App_SitStand" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="CardTag" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-CardTag"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-CardTag" data-animation-path="animations/UI Guide/CardTag.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=CardTag&project=UI Guide" target="_blank">CardTag</a>
+                        <a href="./index.html?animation=CardTag&project=UI Guide" target="_blank" class="animation-name">CardTag</a>
                         <span class="duration" id="duration-UI Guide-CardTag">...</span>
                         <button class="copy-link" data-animation="CardTag" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_Alerts" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_Alerts"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_Alerts" data-animation-path="animations/UI Guide/FDC_Alerts.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_Alerts&project=UI Guide" target="_blank">FDC Alerts</a>
+                        <a href="./index.html?animation=FDC_Alerts&project=UI Guide" target="_blank" class="animation-name">FDC Alerts</a>
                         <span class="duration" id="duration-UI Guide-FDC_Alerts">...</span>
                         <button class="copy-link" data-animation="FDC_Alerts" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_CardTag" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_CardTag"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_CardTag" data-animation-path="animations/UI Guide/FDC_CardTag.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_CardTag&project=UI Guide" target="_blank">FDC CardTag</a>
+                        <a href="./index.html?animation=FDC_CardTag&project=UI Guide" target="_blank" class="animation-name">FDC CardTag</a>
                         <span class="duration" id="duration-UI Guide-FDC_CardTag">...</span>
                         <button class="copy-link" data-animation="FDC_CardTag" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_DeskHeight" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_DeskHeight"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_DeskHeight" data-animation-path="animations/UI Guide/FDC_DeskHeight.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_DeskHeight&project=UI Guide" target="_blank">FDC DeskHeight</a>
+                        <a href="./index.html?animation=FDC_DeskHeight&project=UI Guide" target="_blank" class="animation-name">FDC DeskHeight</a>
                         <span class="duration" id="duration-UI Guide-FDC_DeskHeight">...</span>
                         <button class="copy-link" data-animation="FDC_DeskHeight" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_MainMenu" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_MainMenu"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_MainMenu" data-animation-path="animations/UI Guide/FDC_MainMenu.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_MainMenu&project=UI Guide" target="_blank">FDC MainMenu</a>
+                        <a href="./index.html?animation=FDC_MainMenu&project=UI Guide" target="_blank" class="animation-name">FDC MainMenu</a>
                         <span class="duration" id="duration-UI Guide-FDC_MainMenu">...</span>
                         <button class="copy-link" data-animation="FDC_MainMenu" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_PhoneTag" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_PhoneTag"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_PhoneTag" data-animation-path="animations/UI Guide/FDC_PhoneTag.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_PhoneTag&project=UI Guide" target="_blank">FDC PhoneTag</a>
+                        <a href="./index.html?animation=FDC_PhoneTag&project=UI Guide" target="_blank" class="animation-name">FDC PhoneTag</a>
                         <span class="duration" id="duration-UI Guide-FDC_PhoneTag">...</span>
                         <button class="copy-link" data-animation="FDC_PhoneTag" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_Privacy" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_Privacy"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_Privacy" data-animation-path="animations/UI Guide/FDC_Privacy.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_Privacy&project=UI Guide" target="_blank">FDC Privacy</a>
+                        <a href="./index.html?animation=FDC_Privacy&project=UI Guide" target="_blank" class="animation-name">FDC Privacy</a>
                         <span class="duration" id="duration-UI Guide-FDC_Privacy">...</span>
                         <button class="copy-link" data-animation="FDC_Privacy" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="FDC_Team" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-FDC_Team"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-FDC_Team" data-animation-path="animations/UI Guide/FDC_Team.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_Team&project=UI Guide" target="_blank">FDC Team</a>
+                        <a href="./index.html?animation=FDC_Team&project=UI Guide" target="_blank" class="animation-name">FDC Team</a>
                         <span class="duration" id="duration-UI Guide-FDC_Team">...</span>
                         <button class="copy-link" data-animation="FDC_Team" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="PhoneCheckIn" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-PhoneCheckIn"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-PhoneCheckIn" data-animation-path="animations/UI Guide/PhoneCheckIn.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=PhoneCheckIn&project=UI Guide" target="_blank">PhoneCheckIn</a>
+                        <a href="./index.html?animation=PhoneCheckIn&project=UI Guide" target="_blank" class="animation-name">PhoneCheckIn</a>
                         <span class="duration" id="duration-UI Guide-PhoneCheckIn">...</span>
                         <button class="copy-link" data-animation="PhoneCheckIn" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="UI_AlertScreen" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-UI_AlertScreen"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-UI_AlertScreen" data-animation-path="animations/UI Guide/UI_AlertScreen.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=UI_AlertScreen&project=UI Guide" target="_blank">UI AlertScreen</a>
+                        <a href="./index.html?animation=UI_AlertScreen&project=UI Guide" target="_blank" class="animation-name">UI AlertScreen</a>
                         <span class="duration" id="duration-UI Guide-UI_AlertScreen">...</span>
                         <button class="copy-link" data-animation="UI_AlertScreen" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="UI_ContactScreen" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-UI_ContactScreen"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-UI_ContactScreen" data-animation-path="animations/UI Guide/UI_ContactScreen.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=UI_ContactScreen&project=UI Guide" target="_blank">UI ContactScreen</a>
+                        <a href="./index.html?animation=UI_ContactScreen&project=UI Guide" target="_blank" class="animation-name">UI ContactScreen</a>
                         <span class="duration" id="duration-UI Guide-UI_ContactScreen">...</span>
                         <button class="copy-link" data-animation="UI_ContactScreen" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="UI_PrivacyMode" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-UI_PrivacyMode"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-UI_PrivacyMode" data-animation-path="animations/UI Guide/UI_PrivacyMode.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=UI_PrivacyMode&project=UI Guide" target="_blank">UI PrivacyMode</a>
+                        <a href="./index.html?animation=UI_PrivacyMode&project=UI Guide" target="_blank" class="animation-name">UI PrivacyMode</a>
                         <span class="duration" id="duration-UI Guide-UI_PrivacyMode">...</span>
                         <button class="copy-link" data-animation="UI_PrivacyMode" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
                         </button>
                     </div>
                 </div>
-                <div class="animation-item" data-animation="UI_TapMenu" data-project="UI Guide">
-                    <div class="preview" id="preview-UI Guide-UI_TapMenu"><div></div></div>
+                <div class="animation-item">
+                    <div class="preview" id="preview-UI Guide-UI_TapMenu" data-animation-path="animations/UI Guide/UI_TapMenu.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=UI_TapMenu&project=UI Guide" target="_blank">UI TapMenu</a>
+                        <a href="./index.html?animation=UI_TapMenu&project=UI Guide" target="_blank" class="animation-name">UI TapMenu</a>
                         <span class="duration" id="duration-UI Guide-UI_TapMenu">...</span>
                         <button class="copy-link" data-animation="UI_TapMenu" data-project="UI Guide">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
                             </svg>
@@ -376,232 +381,95 @@
                 .catch(error => {
                     console.error('Error loading animation data:', error);
                     document.getElementById(displayElementId).textContent = '?';
-                
-        // Function to set up hover-based animation loading
+                });
+        }
+
+        // Function to set up lottie animations that load and play on hover
         function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
             if (!container) {
-                console.error("Container not found: " + containerId);
+                console.error("Container not found:", containerId);
                 return;
             }
             
             const parentItem = container.closest('.animation-item');
             if (!parentItem) {
-                console.error("Parent animation item not found for: " + containerId);
+                console.error("Parent animation item not found for:", containerId);
                 return;
             }
             
             let animation = null;
+            let animationLoaded = false;
             
-            // Add a loading indicator
-            const containerInner = container.querySelector('div');
-            if (!containerInner) {
-                console.error("Inner container div not found for: " + containerId);
-                return;
-            }
-            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Loading...</div>';
+            // Create a dedicated animation container
+            const animContainer = document.createElement('div');
+            animContainer.style.width = '100%';
+            animContainer.style.height = '100%';
+            animContainer.style.position = 'absolute';
+            animContainer.style.top = '0';
+            animContainer.style.left = '0';
+            container.innerHTML = '';
+            container.appendChild(animContainer);
             
-            // Load the animation with better error handling
+            // Show loading indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.position = 'absolute';
+            loadingDiv.style.top = '0';
+            loadingDiv.style.left = '0';
+            loadingDiv.style.width = '100%';
+            loadingDiv.style.height = '100%';
+            loadingDiv.style.display = 'flex';
+            loadingDiv.style.alignItems = 'center';
+            loadingDiv.style.justifyContent = 'center';
+            loadingDiv.style.backgroundColor = '#f9f9f9';
+            loadingDiv.textContent = 'Loading...';
+            container.appendChild(loadingDiv);
+            
+            // Pre-load the animation data
             fetch(jsonPath)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("Failed to fetch " + jsonPath + ": " + response.status + " " + response.statusText);
+                        throw new Error(`Failed to load: ${response.status}`);
                     }
                     return response.json();
                 })
                 .then(animationData => {
-                    try {
-                        // Clear the loading indicator
-                        containerInner.innerHTML = '';
-                        
-                        // Create the animation immediately but paused
-                        animation = lottie.loadAnimation({
-                            container: containerInner,
-                            renderer: 'svg',
-                            loop: true,
-                            autoplay: true, // autoplay
-                            animationData,
-                            rendererSettings: {
-                                preserveAspectRatio: 'xMidYMid slice'
-                            }
-                        });
-                        
-                        // Force it to render the first frame
-                        animation.goToAndStop(1, true);
+                    // Remove loading indicator
+                    container.removeChild(loadingDiv);
+                    
+                    // Initialize the animation but don't play yet
+                    animation = lottie.loadAnimation({
+                        container: animContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: false,
+                        animationData: animationData
+                    });
+                    
+                    // Show the first frame when loaded
+                    animation.addEventListener('DOMLoaded', () => {
                         animation.goToAndStop(0, true);
-                        
-                        // Add events to handle animation errors
-                        animation.addEventListener('error', (error) => {
-                            console.error("Animation error for " + jsonPath + ":", error);
-                            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                        });
-                        
-                        console.log("Successfully loaded preview for: " + jsonPath);
-                    } catch (error) {
-                        console.error("Error initializing animation for " + jsonPath + ":", error);
-                        containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                    }
+                        animationLoaded = true;
+                    });
+                    
+                    // Set up hover events
+                    parentItem.addEventListener('mouseenter', () => {
+                        if (animation && animationLoaded) {
+                            animation.play();
+                        }
+                    });
+                    
+                    parentItem.addEventListener('mouseleave', () => {
+                        if (animation && animationLoaded) {
+                            animation.pause();
+                            animation.goToAndStop(0, true);
+                        }
+                    });
                 })
                 .catch(error => {
-                    console.error("Error loading animation data for " + jsonPath + ":", error);
-                    containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                    console.error(`Error loading ${jsonPath}:`, error);
+                    loadingDiv.textContent = 'Error';
                 });
-            
-            // Set up hover events with error handling
-            parentItem.addEventListener('mouseenter', function() {
-                if (animation) {
-                    try {
-                        animation.play();
-                    } catch (error) {
-                        console.error("Error playing animation for " + jsonPath + ":", error);
-                    }
-                }
-            });
-            
-            parentItem.addEventListener('mouseleave', function() {
-                if (animation) {
-                    try {
-                        animation.pause();
-                        // Go back to the first frame when no longer hovering
-                        animation.goToAndStop(0, true);
-                    } catch (error) {
-                        console.error("Error pausing animation for " + jsonPath + ":", error);
-                    }
-                }
-            });
-        }
-    
-            
-            // Set up all hover animations
-              setupHoverAnimation('animations/overview/FullOverview.json', 'preview-overview-FullOverview');
-  setupHoverAnimation('animations/overview/RadioOccupancyHeight.json', 'preview-overview-RadioOccupancyHeight');
-  setupHoverAnimation('animations/UI Guide/App_SitStand.json', 'preview-UI Guide-App_SitStand');
-  setupHoverAnimation('animations/UI Guide/CardTag.json', 'preview-UI Guide-CardTag');
-  setupHoverAnimation('animations/UI Guide/FDC_Alerts.json', 'preview-UI Guide-FDC_Alerts');
-  setupHoverAnimation('animations/UI Guide/FDC_CardTag.json', 'preview-UI Guide-FDC_CardTag');
-  setupHoverAnimation('animations/UI Guide/FDC_DeskHeight.json', 'preview-UI Guide-FDC_DeskHeight');
-  setupHoverAnimation('animations/UI Guide/FDC_MainMenu.json', 'preview-UI Guide-FDC_MainMenu');
-  setupHoverAnimation('animations/UI Guide/FDC_PhoneTag.json', 'preview-UI Guide-FDC_PhoneTag');
-  setupHoverAnimation('animations/UI Guide/FDC_Privacy.json', 'preview-UI Guide-FDC_Privacy');
-  setupHoverAnimation('animations/UI Guide/FDC_Team.json', 'preview-UI Guide-FDC_Team');
-  setupHoverAnimation('animations/UI Guide/PhoneCheckIn.json', 'preview-UI Guide-PhoneCheckIn');
-  setupHoverAnimation('animations/UI Guide/UI_AlertScreen.json', 'preview-UI Guide-UI_AlertScreen');
-  setupHoverAnimation('animations/UI Guide/UI_ContactScreen.json', 'preview-UI Guide-UI_ContactScreen');
-  setupHoverAnimation('animations/UI Guide/UI_PrivacyMode.json', 'preview-UI Guide-UI_PrivacyMode');
-  setupHoverAnimation('animations/UI Guide/UI_TapMenu.json', 'preview-UI Guide-UI_TapMenu');
-
-        });
-        }
-
-        // Function to set up hover-based animation loading with a better rendering approach
-        function setupHoverAnimation(jsonPath, containerId) {
-            const container = document.getElementById(containerId);
-            if (!container) {
-                console.error("Container not found: " + containerId);
-                return;
-            }
-            
-            // Make sure the container is visible
-            container.style.display = 'block';
-            container.style.position = 'relative';
-            
-            const parentItem = container.closest('.animation-item');
-            if (!parentItem) {
-                console.error("Parent animation item not found for: " + containerId);
-                return;
-            }
-            
-            let animation = null;
-            
-            // Create a dedicated animation container if it doesn't exist
-            let containerInner = container.querySelector('div');
-            if (!containerInner) {
-                containerInner = document.createElement('div');
-                containerInner.style.position = 'absolute';
-                containerInner.style.top = '0';
-                containerInner.style.left = '0';
-                containerInner.style.width = '100%';
-                containerInner.style.height = '100%';
-                container.appendChild(containerInner);
-            }
-            
-            // Add a loading indicator
-            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Loading...</div>';
-            
-            // Load the animation
-            fetch(jsonPath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("Failed to fetch " + jsonPath + ": " + response.status + " " + response.statusText);
-                    }
-                    return response.json();
-                })
-                .then(animationData => {
-                    try {
-                        // Clear the loading indicator
-                        containerInner.innerHTML = '';
-                        
-                        // Create the animation with a visible first frame
-                        animation = lottie.loadAnimation({
-                            container: containerInner,
-                            renderer: 'svg',
-                            loop: true,
-                            autoplay: false,
-                            animationData: animationData,
-                            rendererSettings: {
-                                preserveAspectRatio: 'xMidYMid slice',
-                                clearCanvas: false
-                            }
-                        });
-                        
-                        // Wait for animation to be ready then show first frame
-                        animation.addEventListener('DOMLoaded', function() {
-                            // Force redraw by going to frame 1 then back to 0
-                            animation.goToAndStop(1, true);
-                            setTimeout(() => {
-                                animation.goToAndStop(0, true);
-                            }, 50);
-                        });
-                        
-                        // Handle animation errors
-                        animation.addEventListener('error', (error) => {
-                            console.error("Animation error for " + jsonPath + ":", error);
-                            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                        });
-                        
-                        console.log("Successfully loaded preview for: " + jsonPath);
-                    } catch (error) {
-                        console.error("Error initializing animation for " + jsonPath + ":", error);
-                        containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                    }
-                })
-                .catch(error => {
-                    console.error("Error loading animation data for " + jsonPath + ":", error);
-                    containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                });
-            
-            // Set up hover events
-            parentItem.addEventListener('mouseenter', function() {
-                if (animation) {
-                    try {
-                        animation.play();
-                    } catch (error) {
-                        console.error("Error playing animation for " + jsonPath + ":", error);
-                    }
-                }
-            });
-            
-            parentItem.addEventListener('mouseleave', function() {
-                if (animation) {
-                    try {
-                        animation.pause();
-                        // Go back to the first frame
-                        animation.goToAndStop(0, true);
-                    } catch (error) {
-                        console.error("Error pausing animation for " + jsonPath + ":", error);
-                    }
-                }
-            });
         }
 
         // Setup "Copy Link" functionality
@@ -633,6 +501,15 @@
                         }, 1500);
                     });
                 });
+            });
+            
+            // Initialize animations for all previews
+            const previewElements = document.querySelectorAll('.preview');
+            previewElements.forEach(preview => {
+                const animPath = preview.dataset.animationPath;
+                if (animPath) {
+                    setupHoverAnimation(animPath, preview.id);
+                }
             });
             
             // Calculate and display durations for all animations

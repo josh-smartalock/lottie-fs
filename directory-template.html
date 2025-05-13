@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
             line-height: 1.6;
@@ -17,9 +17,9 @@
             padding-bottom: 10px;
         }
         .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
             margin: 30px 0;
         }
         .project-card {
@@ -34,8 +34,8 @@
         }
         .animations {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
         }
         .animation-item {
             border: 1px solid #eee;
@@ -50,7 +50,7 @@
         }
         .preview {
             position: relative;
-            height: 100px;
+            height: 0;
             width: 100%;
             padding-bottom: 75%;
             background-color: #f9f9f9;
@@ -86,8 +86,15 @@
             justify-content: space-between;
             margin-top: 8px;
         }
-        .duration {
+        .animation-name {
             font-size: 12px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+        .duration {
+            font-size: 11px;
             color: #666;
             margin-left: 5px;
         }
@@ -159,115 +166,92 @@
                 });
         }
 
-        // Function to set up hover-based animation loading with a better rendering approach
+        // Function to set up lottie animations that load and play on hover
         function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
             if (!container) {
-                console.error("Container not found: " + containerId);
+                console.error("Container not found:", containerId);
                 return;
             }
             
-            // Make sure the container is visible
-            container.style.display = 'block';
-            container.style.position = 'relative';
-            
             const parentItem = container.closest('.animation-item');
             if (!parentItem) {
-                console.error("Parent animation item not found for: " + containerId);
+                console.error("Parent animation item not found for:", containerId);
                 return;
             }
             
             let animation = null;
+            let animationLoaded = false;
             
-            // Create a dedicated animation container if it doesn't exist
-            let containerInner = container.querySelector('div');
-            if (!containerInner) {
-                containerInner = document.createElement('div');
-                containerInner.style.position = 'absolute';
-                containerInner.style.top = '0';
-                containerInner.style.left = '0';
-                containerInner.style.width = '100%';
-                containerInner.style.height = '100%';
-                container.appendChild(containerInner);
-            }
+            // Create a dedicated animation container
+            const animContainer = document.createElement('div');
+            animContainer.style.width = '100%';
+            animContainer.style.height = '100%';
+            animContainer.style.position = 'absolute';
+            animContainer.style.top = '0';
+            animContainer.style.left = '0';
+            container.innerHTML = '';
+            container.appendChild(animContainer);
             
-            // Add a loading indicator
-            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Loading...</div>';
+            // Show loading indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.style.position = 'absolute';
+            loadingDiv.style.top = '0';
+            loadingDiv.style.left = '0';
+            loadingDiv.style.width = '100%';
+            loadingDiv.style.height = '100%';
+            loadingDiv.style.display = 'flex';
+            loadingDiv.style.alignItems = 'center';
+            loadingDiv.style.justifyContent = 'center';
+            loadingDiv.style.backgroundColor = '#f9f9f9';
+            loadingDiv.textContent = 'Loading...';
+            container.appendChild(loadingDiv);
             
-            // Load the animation
+            // Pre-load the animation data
             fetch(jsonPath)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error("Failed to fetch " + jsonPath + ": " + response.status + " " + response.statusText);
+                        throw new Error(`Failed to load: ${response.status}`);
                     }
                     return response.json();
                 })
                 .then(animationData => {
-                    try {
-                        // Clear the loading indicator
-                        containerInner.innerHTML = '';
-                        
-                        // Create the animation with a visible first frame
-                        animation = lottie.loadAnimation({
-                            container: containerInner,
-                            renderer: 'svg',
-                            loop: true,
-                            autoplay: false,
-                            animationData: animationData,
-                            rendererSettings: {
-                                preserveAspectRatio: 'xMidYMid slice',
-                                clearCanvas: false
-                            }
-                        });
-                        
-                        // Wait for animation to be ready then show first frame
-                        animation.addEventListener('DOMLoaded', function() {
-                            // Force redraw by going to frame 1 then back to 0
-                            animation.goToAndStop(1, true);
-                            setTimeout(() => {
-                                animation.goToAndStop(0, true);
-                            }, 50);
-                        });
-                        
-                        // Handle animation errors
-                        animation.addEventListener('error', (error) => {
-                            console.error("Animation error for " + jsonPath + ":", error);
-                            containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                        });
-                        
-                        console.log("Successfully loaded preview for: " + jsonPath);
-                    } catch (error) {
-                        console.error("Error initializing animation for " + jsonPath + ":", error);
-                        containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
-                    }
+                    // Remove loading indicator
+                    container.removeChild(loadingDiv);
+                    
+                    // Initialize the animation but don't play yet
+                    animation = lottie.loadAnimation({
+                        container: animContainer,
+                        renderer: 'svg',
+                        loop: true,
+                        autoplay: false,
+                        animationData: animationData
+                    });
+                    
+                    // Show the first frame when loaded
+                    animation.addEventListener('DOMLoaded', () => {
+                        animation.goToAndStop(0, true);
+                        animationLoaded = true;
+                    });
+                    
+                    // Set up hover events
+                    parentItem.addEventListener('mouseenter', () => {
+                        if (animation && animationLoaded) {
+                            animation.play();
+                        }
+                    });
+                    
+                    parentItem.addEventListener('mouseleave', () => {
+                        if (animation && animationLoaded) {
+                            animation.pause();
+                            animation.goToAndStop(0, true);
+                        }
+                    });
                 })
                 .catch(error => {
-                    console.error("Error loading animation data for " + jsonPath + ":", error);
-                    containerInner.innerHTML = '<div style="height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Error</div>';
+                    console.error(`Error loading ${jsonPath}:`, error);
+                    loadingDiv.textContent = 'Error';
                 });
-            
-            // Set up hover events
-            parentItem.addEventListener('mouseenter', function() {
-                if (animation) {
-                    try {
-                        animation.play();
-                    } catch (error) {
-                        console.error("Error playing animation for " + jsonPath + ":", error);
-                    }
-                }
-            });
-            
-            parentItem.addEventListener('mouseleave', function() {
-                if (animation) {
-                    try {
-                        animation.pause();
-                        // Go back to the first frame
-                        animation.goToAndStop(0, true);
-                    } catch (error) {
-                        console.error("Error pausing animation for " + jsonPath + ":", error);
-                    }
-                }
-            });
         }
 
         // Setup "Copy Link" functionality
@@ -299,6 +283,15 @@
                         }, 1500);
                     });
                 });
+            });
+            
+            // Initialize animations for all previews
+            const previewElements = document.querySelectorAll('.preview');
+            previewElements.forEach(preview => {
+                const animPath = preview.dataset.animationPath;
+                if (animPath) {
+                    setupHoverAnimation(animPath, preview.id);
+                }
             });
             
             // Calculate and display durations for all animations
