@@ -8,10 +8,19 @@ const OUTPUT_PATH = 'directory.html';
 
 // Function to get animation titles from filenames
 function getTitleFromFilename(filename) {
-  // Remove extension and convert dashes/underscores to spaces
-  return path.basename(filename, '.json')
-    .replace(/[-_]/g, ' ')
-    .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize first letter of each word
+  // Remove extension
+  let title = path.basename(filename, '.json');
+
+  // Insert space before capital letters that follow a lowercase letter
+  title = title.replace(/([a-z])([A-Z])/g, '$1 $2');
+
+  // Convert dashes/underscores to spaces
+  title = title.replace(/[-_]/g, ' ');
+
+  // Capitalize the first letter of each word
+  title = title.replace(/\b\w/g, l => l.toUpperCase());
+
+  return title;
 }
 
 // Main function
