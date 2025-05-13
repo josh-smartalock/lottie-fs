@@ -133,11 +133,11 @@
                 </div>
 
                 <div class="animation-item">
-                    <div class="preview" id="preview-overview-occheight"></div>
+                    <div class="preview" id="preview-overview-occupancy"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=occheight&project=overview" target="_blank">Radio, occupancy sensor, height</a>
-                        <span class="duration" id="duration-overview-occheight">...</span>
-                        <button class="copy-link" data-animation="occheight" data-project="overview">
+                        <a href="./index.html?animation=occupancy&project=overview" target="_blank">Radio, occupancy sensor, height</a>
+                        <span class="duration" id="duration-overview-occupancy">...</span>
+                        <button class="copy-link" data-animation="occupancy" data-project="overview">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                             <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
@@ -168,7 +168,7 @@
                 autoplay: false
             });
 
-            loadLottieAnimation('preview-overview-occheight', 'animations/overview/occheight.json', {
+            loadLottieAnimation('preview-overview-occupancy', 'animations/overview/occupancy.json', {
                 loop: true,
                 autoplay: false
             });
@@ -236,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Calculate and display durations for all animations
   displayAnimationLength('animations/overview/zoom.json', 'duration-overview-zoom');
-  displayAnimationLength('animations/overview/occheight.json', 'duration-overview-occheight');
+  displayAnimationLength('animations/overview/occupancy.json', 'duration-overview-occupancy');
   // Add similar lines for each of your animations
 });
     </script>
