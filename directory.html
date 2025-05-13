@@ -168,26 +168,9 @@
                 autoplay: false
             });
 
-                        loadLottieAnimation('preview-overview-occheight', 'animations/overview/occheight.json', {
+            loadLottieAnimation('preview-overview-occheight', 'animations/overview/occheight.json', {
                 loop: true,
                 autoplay: false
-            });
-            
-            // Example for Project Y animations
-            loadLottieAnimation('preview-project-y-hero', 'animations/project_y/hero.json', {
-                loop: true,
-                autoplay: true
-            });
-            
-            loadLottieAnimation('preview-project-y-feature', 'animations/project_y/feature.json', {
-                loop: true,
-                autoplay: true
-            });
-            
-            // Example for Shared animations
-            loadLottieAnimation('preview-shared-loading', 'animations/shared/loading.json', {
-                loop: true,
-                autoplay: true
             });
         });
 
@@ -253,6 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Calculate and display durations for all animations
   displayAnimationLength('animations/overview/zoom.json', 'duration-overview-zoom');
+  displayAnimationLength('animations/overview/occheight.json', 'duration-overview-occheight');
   // Add similar lines for each of your animations
 });
     </script>
