@@ -138,14 +138,37 @@ async function updateDirectory() {
   
   // Add CSS for the action buttons and video link
   outputHtml = outputHtml.replace('</style>', `
+    .animation-item {
+        margin-bottom: 15px;
+        padding: 10px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+    }
+    .preview {
+        width: 100px; /* Example width */
+        height: 80px; /* Example height */
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        margin-right: 10px;
+    }
+    .animation-details {
+        flex-grow: 1;
+        display: flex; /* Enable flexbox for animation details */
+        align-items: center;
+        justify-content: space-between; /* Distribute space between name and buttons */
+    }
+    .animation-name {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
     .action-buttons {
-        position: absolute;
-        top: 0;
-        right: 0;
         display: flex;
         gap: 4px;
     }
-    .video-link {
+    .video-link, .copy-link {
         background: none;
         border: none;
         cursor: pointer;
@@ -154,12 +177,12 @@ async function updateDirectory() {
         border-radius: 3px;
         display: flex;
         align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
     }
-    .video-link:hover {
+    .video-link:hover, .copy-link:hover {
         background-color: #f0f0f0;
-    }
-    .animation-name {
-        padding-right: 44px; /* Make room for both buttons */
     }
 </style>`);
   
