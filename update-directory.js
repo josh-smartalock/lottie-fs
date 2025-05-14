@@ -83,7 +83,12 @@ async function updateDirectory() {
     // Start project card
     projectCardsHtml += `
         <div class="project-card">
-            <h2>${projectFolder}</h2>
+            <div class="project-header">
+                <h2>${projectFolder}</h2>
+                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
             <div class="animations">`;
     
     // Add each animation
@@ -135,35 +140,6 @@ async function updateDirectory() {
   // Replace placeholders in template
   let outputHtml = template
     .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml);
-  
-  // Add CSS for the action buttons and video link
-  outputHtml = outputHtml.replace('</style>', `
-    .action-buttons {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        flex-direction: row;
-        gap: 4px;
-        align-items: center;
-    }
-    .video-link {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #0366d6;
-        padding: 3px;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-    }
-    .video-link:hover {
-        background-color: #f0f0f0;
-    }
-    .animation-name {
-        padding-right: 44px; /* Make room for both buttons */
-    }
-</style>`);
   
   // Write the output file
   fs.writeFileSync(OUTPUT_PATH, outputHtml);

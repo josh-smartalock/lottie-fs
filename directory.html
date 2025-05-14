@@ -40,14 +40,37 @@
             padding: 15px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
-        .project-card h2 {
-            margin-top: 0;
+        .project-header {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .project-header h2 {
+            margin: 0;
             color: #333;
+            flex-grow: 1;
+        }
+        .toggle-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+        }
+        .project-card.collapsed .toggle-icon {
+            transform: rotate(-90deg);
         }
         .animations {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 15px;
+            margin-top: 15px;
+            transition: height 0.3s ease, opacity 0.3s ease;
+            overflow: hidden;
+        }
+        .project-card.collapsed .animations {
+            height: 0 !important;
+            opacity: 0;
+            margin-top: 0;
         }
         .animation-item {
             border: 1px solid #eee;
@@ -129,33 +152,32 @@
             z-index: 100;
             transition: opacity 0.3s;
         }
-    
-    .action-buttons {
-        position: absolute;
-        top: 0;
-        right: 0;
-        display: flex;
-        flex-direction: row;
-        gap: 4px;
-        align-items: center;
-    }
-    .video-link {
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #0366d6;
-        padding: 3px;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-    }
-    .video-link:hover {
-        background-color: #f0f0f0;
-    }
-    .animation-name {
-        padding-right: 44px; /* Make room for both buttons */
-    }
-</style>
+        .action-buttons {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: row;
+            gap: 4px;
+            align-items: center;
+        }
+        .video-link {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #0366d6;
+            padding: 3px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+        }
+        .video-link:hover {
+            background-color: #f0f0f0;
+        }
+        .animation-name {
+            padding-right: 44px; /* Make room for both buttons */
+        }
+    </style>
 </head>
 <body>
     <div class="headerbar">
@@ -165,7 +187,12 @@
     <div class="projects">
         
         <div class="project-card">
-            <h2>Display Companion UI</h2>
+            <div class="project-header">
+                <h2>Display Companion UI</h2>
+                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
             <div class="animations">
                 <div class="animation-item">
                     <div class="preview" id="preview-Display Companion UI-FDC_Alerts" data-animation-path="animations/Display Companion UI/FDC_Alerts.json"></div>
@@ -260,7 +287,12 @@
             </div>
         </div>
         <div class="project-card">
-            <h2>Handset UI</h2>
+            <div class="project-header">
+                <h2>Handset UI</h2>
+                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
             <div class="animations">
                 <div class="animation-item">
                     <div class="preview" id="preview-Handset UI-HandsetAlerts" data-animation-path="animations/Handset UI/HandsetAlerts.json"></div>
@@ -336,7 +368,12 @@
             </div>
         </div>
         <div class="project-card">
-            <h2>Height and Check In</h2>
+            <div class="project-header">
+                <h2>Height and Check In</h2>
+                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
             <div class="animations">
                 <div class="animation-item">
                     <div class="preview" id="preview-Height and Check In-AppSitStand" data-animation-path="animations/Height and Check In/AppSitStand.json"></div>
@@ -436,7 +473,12 @@
             </div>
         </div>
         <div class="project-card">
-            <h2>Overview Clips</h2>
+            <div class="project-header">
+                <h2>Overview Clips</h2>
+                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </div>
             <div class="animations">
                 <div class="animation-item">
                     <div class="preview" id="preview-Overview Clips-FullOverview" data-animation-path="animations/Overview Clips/FullOverview.json"></div>
@@ -596,6 +638,29 @@
                 });
         }
 
+        // Toggle project content visibility
+        function toggleProject(projectCard) {
+            projectCard.classList.toggle('collapsed');
+            
+            // If we're expanding and animations haven't been loaded yet, load them
+            if (!projectCard.classList.contains('collapsed')) {
+                const animationsContainer = projectCard.querySelector('.animations');
+                if (animationsContainer) {
+                    const previewElements = animationsContainer.querySelectorAll('.preview');
+                    previewElements.forEach(preview => {
+                        // Only initialize if not already initialized
+                        if (!preview.dataset.initialized) {
+                            const animPath = preview.dataset.animationPath;
+                            if (animPath) {
+                                setupHoverAnimation(animPath, preview.id);
+                                preview.dataset.initialized = 'true';
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
         // Setup "Copy Link" functionality
         document.addEventListener('DOMContentLoaded', function() {
             // Create tooltip element for copy feedback
@@ -627,12 +692,32 @@
                 });
             });
             
-            // Initialize animations for all previews
-            const previewElements = document.querySelectorAll('.preview');
-            previewElements.forEach(preview => {
-                const animPath = preview.dataset.animationPath;
-                if (animPath) {
-                    setupHoverAnimation(animPath, preview.id);
+            // Set up project header click events
+            document.querySelectorAll('.project-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const projectCard = this.closest('.project-card');
+                    toggleProject(projectCard);
+                });
+            });
+
+            // Initialize animations for visible projects only
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                // Collapse all except the first project by default
+                if (index > 0) {
+                    card.classList.add('collapsed');
+                }
+                
+                // Only load animations for the first (visible) project initially
+                if (index === 0) {
+                    const previewElements = card.querySelectorAll('.preview');
+                    previewElements.forEach(preview => {
+                        const animPath = preview.dataset.animationPath;
+                        if (animPath) {
+                            setupHoverAnimation(animPath, preview.id);
+                            preview.dataset.initialized = 'true';
+                        }
+                    });
                 }
             });
         });
