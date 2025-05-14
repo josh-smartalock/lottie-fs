@@ -120,7 +120,31 @@
             z-index: 100;
             transition: opacity 0.3s;
         }
-    </style>
+    
+    .action-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        gap: 4px;
+    }
+    .video-link {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #0366d6;
+        padding: 3px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+    }
+    .video-link:hover {
+        background-color: #f0f0f0;
+    }
+    .animation-name {
+        padding-right: 44px; /* Make room for both buttons */
+    }
+</style>
 </head>
 <body>
     <h1>Lottie Animation Directory</h1>
@@ -129,119 +153,172 @@
     <div class="projects">
         
         <div class="project-card">
-            <h2>FDC UI Demos</h2>
+            <h2>Display Companion UI</h2>
             <div class="animations">
                 <div class="animation-item">
-                    <div class="preview" id="preview-FDC UI Demos-FDC_Alerts" data-animation-path="animations/FDC UI Demos/FDC_Alerts.json"></div>
+                    <div class="preview" id="preview-Display Companion UI-FDC_Alerts" data-animation-path="animations/Display Companion UI/FDC_Alerts.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_Alerts&project=FDC UI Demos" target="_blank" class="animation-name">FDC Alerts</a>
-                        <button class="copy-link" data-animation="FDC_Alerts" data-project="FDC UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=FDC_Alerts&project=Display Companion UI" target="_blank" class="animation-name">FDC Alerts</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_Alerts" data-project="Display Companion UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1A_Igo2uuZHa5t9v1Ia5en3MTSQLmmoGQ/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FDC UI Demos-FDC_DeskHeight" data-animation-path="animations/FDC UI Demos/FDC_DeskHeight.json"></div>
+                    <div class="preview" id="preview-Display Companion UI-FDC_DeskHeight" data-animation-path="animations/Display Companion UI/FDC_DeskHeight.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_DeskHeight&project=FDC UI Demos" target="_blank" class="animation-name">FDC Desk Height</a>
-                        <button class="copy-link" data-animation="FDC_DeskHeight" data-project="FDC UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=FDC_DeskHeight&project=Display Companion UI" target="_blank" class="animation-name">FDC Desk Height</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_DeskHeight" data-project="Display Companion UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/15F1bAlQq18So9ZdJtKmdeVUUQ82s6U1W/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FDC UI Demos-FDC_MainMenu" data-animation-path="animations/FDC UI Demos/FDC_MainMenu.json"></div>
+                    <div class="preview" id="preview-Display Companion UI-FDC_MainMenu" data-animation-path="animations/Display Companion UI/FDC_MainMenu.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_MainMenu&project=FDC UI Demos" target="_blank" class="animation-name">FDC Main Menu</a>
-                        <button class="copy-link" data-animation="FDC_MainMenu" data-project="FDC UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=FDC_MainMenu&project=Display Companion UI" target="_blank" class="animation-name">FDC Main Menu</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_MainMenu" data-project="Display Companion UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FDC UI Demos-FDC_Privacy" data-animation-path="animations/FDC UI Demos/FDC_Privacy.json"></div>
+                    <div class="preview" id="preview-Display Companion UI-FDC_Privacy" data-animation-path="animations/Display Companion UI/FDC_Privacy.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_Privacy&project=FDC UI Demos" target="_blank" class="animation-name">FDC Privacy</a>
-                        <button class="copy-link" data-animation="FDC_Privacy" data-project="FDC UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=FDC_Privacy&project=Display Companion UI" target="_blank" class="animation-name">FDC Privacy</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_Privacy" data-project="Display Companion UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1llr6uAycFOh21sFvmftBQoiFozZp6o_U/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FDC UI Demos-FDC_Team" data-animation-path="animations/FDC UI Demos/FDC_Team.json"></div>
+                    <div class="preview" id="preview-Display Companion UI-FDC_Team" data-animation-path="animations/Display Companion UI/FDC_Team.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=FDC_Team&project=FDC UI Demos" target="_blank" class="animation-name">FDC Team</a>
-                        <button class="copy-link" data-animation="FDC_Team" data-project="FDC UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=FDC_Team&project=Display Companion UI" target="_blank" class="animation-name">FDC Team</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_Team" data-project="Display Companion UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1S5gFDN4bj-4DXQGhmCpurW5JBOpiKY9W/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="project-card">
-            <h2>FHS UI Demos</h2>
+            <h2>Handset UI</h2>
             <div class="animations">
                 <div class="animation-item">
-                    <div class="preview" id="preview-FHS UI Demos-HandsetAlerts" data-animation-path="animations/FHS UI Demos/HandsetAlerts.json"></div>
+                    <div class="preview" id="preview-Handset UI-HandsetAlerts" data-animation-path="animations/Handset UI/HandsetAlerts.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=HandsetAlerts&project=FHS UI Demos" target="_blank" class="animation-name">Handset Alerts</a>
-                        <button class="copy-link" data-animation="HandsetAlerts" data-project="FHS UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=HandsetAlerts&project=Handset UI" target="_blank" class="animation-name">Handset Alerts</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="HandsetAlerts" data-project="Handset UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FHS UI Demos-HandsetContacts" data-animation-path="animations/FHS UI Demos/HandsetContacts.json"></div>
+                    <div class="preview" id="preview-Handset UI-HandsetContacts" data-animation-path="animations/Handset UI/HandsetContacts.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=HandsetContacts&project=FHS UI Demos" target="_blank" class="animation-name">Handset Contacts</a>
-                        <button class="copy-link" data-animation="HandsetContacts" data-project="FHS UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=HandsetContacts&project=Handset UI" target="_blank" class="animation-name">Handset Contacts</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="HandsetContacts" data-project="Handset UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1N8tf9XtNj62S2IIs9fiydQ1_u63PgrCU/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FHS UI Demos-HandsetMenu" data-animation-path="animations/FHS UI Demos/HandsetMenu.json"></div>
+                    <div class="preview" id="preview-Handset UI-HandsetMenu" data-animation-path="animations/Handset UI/HandsetMenu.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=HandsetMenu&project=FHS UI Demos" target="_blank" class="animation-name">Handset Menu</a>
-                        <button class="copy-link" data-animation="HandsetMenu" data-project="FHS UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=HandsetMenu&project=Handset UI" target="_blank" class="animation-name">Handset Menu</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="HandsetMenu" data-project="Handset UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/16tSgT37VTQPKuuSmC-dUFjq7cdsD8ndG/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
-                    <div class="preview" id="preview-FHS UI Demos-HandsetPrivacy" data-animation-path="animations/FHS UI Demos/HandsetPrivacy.json"></div>
+                    <div class="preview" id="preview-Handset UI-HandsetPrivacy" data-animation-path="animations/Handset UI/HandsetPrivacy.json"></div>
                     <div class="animation-details">
-                        <a href="./index.html?animation=HandsetPrivacy&project=FHS UI Demos" target="_blank" class="animation-name">Handset Privacy</a>
-                        <button class="copy-link" data-animation="HandsetPrivacy" data-project="FHS UI Demos">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <a href="./index.html?animation=HandsetPrivacy&project=Handset UI" target="_blank" class="animation-name">Handset Privacy</a>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="HandsetPrivacy" data-project="Handset UI" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1NpEuvroVYkitwrYpE8NXg7TGzG1jRUYt/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -253,60 +330,95 @@
                     <div class="preview" id="preview-Height and Check In-AppSitStand" data-animation-path="animations/Height and Check In/AppSitStand.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=AppSitStand&project=Height and Check In" target="_blank" class="animation-name">App Sit Stand</a>
-                        <button class="copy-link" data-animation="AppSitStand" data-project="Height and Check In">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="AppSitStand" data-project="Height and Check In" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1AXAQcvkMGO99t22oPDOytZNsZO0VUEWU/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
                     <div class="preview" id="preview-Height and Check In-FDC_CardTag" data-animation-path="animations/Height and Check In/FDC_CardTag.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=FDC_CardTag&project=Height and Check In" target="_blank" class="animation-name">FDC Card Tag</a>
-                        <button class="copy-link" data-animation="FDC_CardTag" data-project="Height and Check In">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_CardTag" data-project="Height and Check In" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1vwdtHK0qnziyi8PevOgBTM2hO4Rjtsap/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
                     <div class="preview" id="preview-Height and Check In-FDC_PhoneTag" data-animation-path="animations/Height and Check In/FDC_PhoneTag.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=FDC_PhoneTag&project=Height and Check In" target="_blank" class="animation-name">FDC Phone Tag</a>
-                        <button class="copy-link" data-animation="FDC_PhoneTag" data-project="Height and Check In">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FDC_PhoneTag" data-project="Height and Check In" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1VYbrjFA98tjsEctuXbeBlzsXC3wy--X8/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
                     <div class="preview" id="preview-Height and Check In-HandsetCardTag" data-animation-path="animations/Height and Check In/HandsetCardTag.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=HandsetCardTag&project=Height and Check In" target="_blank" class="animation-name">Handset Card Tag</a>
-                        <button class="copy-link" data-animation="HandsetCardTag" data-project="Height and Check In">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="HandsetCardTag" data-project="Height and Check In" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1v04J8SWWuV1q4JGv35MtnRi8WV9c3rUW/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
                     <div class="preview" id="preview-Height and Check In-HandsetPhoneTag" data-animation-path="animations/Height and Check In/HandsetPhoneTag.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=HandsetPhoneTag&project=Height and Check In" target="_blank" class="animation-name">Handset Phone Tag</a>
-                        <button class="copy-link" data-animation="HandsetPhoneTag" data-project="Height and Check In">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="HandsetPhoneTag" data-project="Height and Check In" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1r7IfzDtuuJYhb_Qr40DiXcGo8zlWSifo/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -318,24 +430,38 @@
                     <div class="preview" id="preview-Overview Clips-FullOverview" data-animation-path="animations/Overview Clips/FullOverview.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=FullOverview&project=Overview Clips" target="_blank" class="animation-name">Full Overview</a>
-                        <button class="copy-link" data-animation="FullOverview" data-project="Overview Clips">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="FullOverview" data-project="Overview Clips" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1VyRMebjVoYSseIK6TJF8zbJZQXrNEB-Y/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="animation-item">
                     <div class="preview" id="preview-Overview Clips-RadioOccupancyHeight" data-animation-path="animations/Overview Clips/RadioOccupancyHeight.json"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=RadioOccupancyHeight&project=Overview Clips" target="_blank" class="animation-name">Radio Occupancy Height</a>
-                        <button class="copy-link" data-animation="RadioOccupancyHeight" data-project="Overview Clips">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="RadioOccupancyHeight" data-project="Overview Clips" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <a href="https://drive.google.com/file/d/1vtbe0FqMYnLB00UAUXueYRjXgnoRjDO2/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

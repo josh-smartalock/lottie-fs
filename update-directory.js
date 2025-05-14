@@ -1,10 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const csv = require('csv-parser'); // We'll use csv-parser to read the CSV file
 
 // Config
 const ANIMATIONS_DIR = 'animations';
 const TEMPLATE_PATH = 'directory-template.html'; 
 const OUTPUT_PATH = 'directory.html';
+const VIDEO_CSV_PATH = 'animation_files.csv';
 
 // Function to get animation titles from filenames
 function getTitleFromFilename(filename) {
@@ -23,12 +25,44 @@ function getTitleFromFilename(filename) {
   return title;
 }
 
+// Parse the CSV file to create a mapping of filenames to video URLs
+async function getVideoUrlMapping() {
+  return new Promise((resolve, reject) => {
+    const results = {};
+    
+    // Check if the CSV file exists
+    if (!fs.existsSync(VIDEO_CSV_PATH)) {
+      console.log(`Video CSV file ${VIDEO_CSV_PATH} not found. Continuing without video links.`);
+      return resolve(results);
+    }
+    
+    fs.createReadStream(VIDEO_CSV_PATH)
+      .pipe(csv())
+      .on('data', (data) => {
+        // Extract filename without extension and map to web address
+        const filename = path.basename(data['File Name'], path.extname(data['File Name']));
+        results[filename] = data['Web Address'];
+      })
+      .on('end', () => {
+        console.log(`Loaded ${Object.keys(results).length} video mappings from CSV`);
+        resolve(results);
+      })
+      .on('error', (error) => {
+        console.error('Error reading CSV file:', error);
+        reject(error);
+      });
+  });
+}
+
 // Main function
 async function updateDirectory() {
   console.log('Scanning animations directory...');
   
   // Read the template file
   const template = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+  
+  // Get video URL mapping from CSV
+  const videoUrlMap = await getVideoUrlMapping();
   
   // Get all project folders
   const projectFolders = fs.readdirSync(ANIMATIONS_DIR)
@@ -49,7 +83,7 @@ async function updateDirectory() {
     // Start project card
     projectCardsHtml += `
         <div class="project-card">
-            <h2>${projectFolder.charAt(0).toUpperCase() + projectFolder.slice(1)}</h2>
+            <h2>${projectFolder}</h2>
             <div class="animations">`;
     
     // Add each animation
@@ -59,17 +93,35 @@ async function updateDirectory() {
       const previewId = `preview-${projectFolder}-${animName}`;
       const animPath = `animations/${projectFolder}/${animName}.json`;
       
+      // Check if there's a matching video file in the CSV
+      const hasVideo = videoUrlMap.hasOwnProperty(animName);
+      const videoUrl = hasVideo ? videoUrlMap[animName] : '';
+      
       projectCardsHtml += `
                 <div class="animation-item">
                     <div class="preview" id="${previewId}" data-animation-path="${animPath}"></div>
                     <div class="animation-details">
                         <a href="./index.html?animation=${animName}&project=${projectFolder}" target="_blank" class="animation-name">${animTitle}</a>
-                        <button class="copy-link" data-animation="${animName}" data-project="${projectFolder}">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
-                            </svg>
-                        </button>
+                        <div class="action-buttons">
+                            <button class="copy-link" data-animation="${animName}" data-project="${projectFolder}" title="Copy link to animation">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>`;
+      
+      // Add video link arrow if there's a matching video
+      if (hasVideo) {
+        projectCardsHtml += `
+                            <a href="${videoUrl}" target="_blank" class="video-link" title="View video">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </a>`;
+      }
+      
+      projectCardsHtml += `
+                        </div>
                     </div>
                 </div>`;
     }
@@ -83,6 +135,33 @@ async function updateDirectory() {
   // Replace placeholders in template
   let outputHtml = template
     .replace('<!-- PROJECT_CARDS_PLACEHOLDER -->', projectCardsHtml);
+  
+  // Add CSS for the action buttons and video link
+  outputHtml = outputHtml.replace('</style>', `
+    .action-buttons {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        gap: 4px;
+    }
+    .video-link {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #0366d6;
+        padding: 3px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+    }
+    .video-link:hover {
+        background-color: #f0f0f0;
+    }
+    .animation-name {
+        padding-right: 44px; /* Make room for both buttons */
+    }
+</style>`);
   
   // Write the output file
   fs.writeFileSync(OUTPUT_PATH, outputHtml);
