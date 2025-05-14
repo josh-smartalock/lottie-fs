@@ -13,10 +13,19 @@
             padding: 20px;
             line-height: 1.6;
         }
+        .headerbar {
+            display: flex;
+            max-height: 120px;
+            align-items:center;
+            gap: 20px;
+        }
+        .headerbar > img {
+            max-height:80px !important;
+            width:auto;
+        }
         h1 {
             font-family: 'Poppins', sans-serif;
-            color: #14b2e2;
-            border-bottom: 2px solid #eee;
+            color: #0e1032;
             padding-bottom: 10px;
         }
         .projects {
@@ -62,7 +71,7 @@
             margin-bottom: 12px;
             overflow: visible;
         }
-        /* Ensure inner divs take up full space */
+        
         .preview > div {
             position: absolute;
             top: 0;
@@ -149,9 +158,10 @@
 </style>
 </head>
 <body>
-    <h1>Lottie Animation Directory</h1>
-    <p>Browse available Lottie animations by project</p>
-    
+    <div class="headerbar">
+        <img src="https://images.squarespace-cdn.com/content/5c2c8ec3297114a6e7b4685a/4e2b9a1d-c1d8-473f-8654-60f058b58d15/OutofBox.png?content-type=image%2Fpng">
+    <h1>FS Animation Directory</h1>
+    </div>
     <div class="projects">
         
         <div class="project-card">
@@ -471,7 +481,7 @@
     </div>
     
     <footer>
-        <p>Lottie Animation Library - <a href="https://github.com/josh-smartalock/lottie-fs">GitHub Repository</a></p>
+        <p>FS Animation Directory - <a href="https://github.com/josh-smartalock/lottie-fs">GitHub Repository</a></p>
     </footer>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
