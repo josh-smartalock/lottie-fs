@@ -138,35 +138,6 @@ async function updateDirectory() {
   
   // Add CSS for the action buttons and video link
   outputHtml = outputHtml.replace('</style>', `
-    .animation-item {
-        position: relative; /* Add this line */
-        margin-bottom: 15px; /* Add some spacing between animation items */
-        padding: 10px;
-        border: 1px solid #eee;
-        border-radius: 5px;
-        display: flex; /* Consider using flexbox for layout */
-        align-items: center; /* Vertically align items */
-    }
-    .preview {
-        /* Your preview styles */
-        width: 100px; /* Example width */
-        height: 80px; /* Example height */
-        background-color: #f9f9f9;
-        border: 1px solid #ddd;
-        margin-right: 10px;
-    }
-    .animation-details {
-        flex-grow: 1; /* Allow details to take up remaining space */
-        position: relative; /* Ensure absolute positioning of buttons works within this */
-    }
-    .animation-name {
-        display: block; /* Make it a block-level element */
-        margin-bottom: 5px;
-        padding-right: 50px; /* Adjust padding to accommodate buttons */
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-    }
     .action-buttons {
         position: absolute;
         top: 0;
@@ -174,7 +145,7 @@ async function updateDirectory() {
         display: flex;
         gap: 4px;
     }
-    .video-link, .copy-link {
+    .video-link {
         background: none;
         border: none;
         cursor: pointer;
@@ -183,12 +154,12 @@ async function updateDirectory() {
         border-radius: 3px;
         display: flex;
         align-items: center;
-        justify-content: center; /* Center the icon inside the button */
-        width: 24px; /* Ensure a fixed width for the button */
-        height: 24px; /* Ensure a fixed height for the button */
     }
-    .video-link:hover, .copy-link:hover {
+    .video-link:hover {
         background-color: #f0f0f0;
+    }
+    .animation-name {
+        padding-right: 44px; /* Make room for both buttons */
     }
 </style>`);
   
