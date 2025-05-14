@@ -143,7 +143,9 @@ async function updateDirectory() {
         top: 0;
         right: 0;
         display: flex;
+        flex-direction: row;
         gap: 4px;
+        align-items: center;
     }
     .video-link {
         background: none;
