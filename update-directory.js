@@ -85,8 +85,8 @@ async function updateDirectory() {
         <div class="project-card">
             <div class="project-header">
                 <h2>${projectFolder}</h2>
-                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
+                <svg class="toggle-icon">
+                    <use href="#icon-toggle"></use>
                 </svg>
             </div>
             <div class="animations">`;
@@ -110,14 +110,13 @@ async function updateDirectory() {
                         <a href="./index.html?animation=${animName}&project=${projectFolder}" target="_blank" class="animation-name">${animTitle}</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="${animName}" data-project="${projectFolder}" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="${jsonUrl}" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>`;
       
@@ -125,8 +124,8 @@ async function updateDirectory() {
       if (hasVideo) {
         projectCardsHtml += `
                             <a href="${videoUrl}" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>`;
       }

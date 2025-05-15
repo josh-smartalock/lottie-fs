@@ -174,12 +174,50 @@
         .video-link:hover {
             background-color: #f0f0f0;
         }
+        /* Hide SVG definitions */
+        .svg-defs {
+            display: none;
+        }
+        /* Set fixed width/height for all icon SVGs */
+        .icon {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
     </style>
 </head>
 <body>
+    <!-- SVG definitions for reuse -->
+    <svg class="svg-defs">
+        <defs>
+            <!-- Toggle arrow icon -->
+            <symbol id="icon-toggle" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </symbol>
+            
+            <!-- Copy link icon -->
+            <symbol id="icon-copy-link" viewBox="0 0 24 24">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+            </symbol>
+            
+            <!-- JSON icon -->
+            <symbol id="icon-json" viewBox="0 0 24 24">
+                <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+            </symbol>
+            
+            <!-- Video link icon -->
+            <symbol id="icon-video" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </symbol>
+        </defs>
+    </svg>
+
     <div class="headerbar">
         <img src="https://images.squarespace-cdn.com/content/5c2c8ec3297114a6e7b4685a/4e2b9a1d-c1d8-473f-8654-60f058b58d15/OutofBox.png?content-type=image%2Fpng">
-    <h1>FS Animation Directory</h1>
+        <h1>FS Animation Directory</h1>
     </div>
     <div class="projects">
         <!-- PROJECT_CARDS_PLACEHOLDER -->

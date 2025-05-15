@@ -174,20 +174,58 @@
         .video-link:hover {
             background-color: #f0f0f0;
         }
+        /* Hide SVG definitions */
+        .svg-defs {
+            display: none;
+        }
+        /* Set fixed width/height for all icon SVGs */
+        .icon {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+        }
     </style>
 </head>
 <body>
+    <!-- SVG definitions for reuse -->
+    <svg class="svg-defs">
+        <defs>
+            <!-- Toggle arrow icon -->
+            <symbol id="icon-toggle" viewBox="0 0 24 24">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </symbol>
+            
+            <!-- Copy link icon -->
+            <symbol id="icon-copy-link" viewBox="0 0 24 24">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+            </symbol>
+            
+            <!-- JSON icon -->
+            <symbol id="icon-json" viewBox="0 0 24 24">
+                <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+            </symbol>
+            
+            <!-- Video link icon -->
+            <symbol id="icon-video" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </symbol>
+        </defs>
+    </svg>
+
     <div class="headerbar">
         <img src="https://images.squarespace-cdn.com/content/5c2c8ec3297114a6e7b4685a/4e2b9a1d-c1d8-473f-8654-60f058b58d15/OutofBox.png?content-type=image%2Fpng">
-    <h1>FS Animation Directory</h1>
+        <h1>FS Animation Directory</h1>
     </div>
     <div class="projects">
         
         <div class="project-card">
             <div class="project-header">
                 <h2>App and Product Overview</h2>
-                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
+                <svg class="toggle-icon">
+                    <use href="#icon-toggle"></use>
                 </svg>
             </div>
             <div class="animations">
@@ -197,19 +235,18 @@
                         <a href="./index.html?animation=AppBookDesk&project=App and Product Overview" target="_blank" class="animation-name">App Book Desk</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="AppBookDesk" data-project="App and Product Overview" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/App%20and%20Product%20Overview/AppBookDesk.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1Lfu2jE5xkE2WbVylCw9rm_0MwF_mX76L/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -221,19 +258,18 @@
                         <a href="./index.html?animation=FullOverview&project=App and Product Overview" target="_blank" class="animation-name">Full Overview</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FullOverview" data-project="App and Product Overview" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/App%20and%20Product%20Overview/FullOverview.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1pfz0ZTbVD118-l0ws9sRDk8jl-Tu4Nem/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -245,19 +281,18 @@
                         <a href="./index.html?animation=RadioOccupancyHeight&project=App and Product Overview" target="_blank" class="animation-name">Radio Occupancy Height</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="RadioOccupancyHeight" data-project="App and Product Overview" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/App%20and%20Product%20Overview/RadioOccupancyHeight.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/16bsarwdM0DC5f-wZ4L1yGTI8lifquAXn/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -268,8 +303,8 @@
         <div class="project-card">
             <div class="project-header">
                 <h2>Display Companion UI</h2>
-                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
+                <svg class="toggle-icon">
+                    <use href="#icon-toggle"></use>
                 </svg>
             </div>
             <div class="animations">
@@ -279,19 +314,18 @@
                         <a href="./index.html?animation=FDC_Alerts&project=Display Companion UI" target="_blank" class="animation-name">FDC Alerts</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_Alerts" data-project="Display Companion UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Display%20Companion%20UI/FDC_Alerts.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1JXqCpyRJaQjiGxWhL_nKyz7u_MInE4Yb/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -303,19 +337,18 @@
                         <a href="./index.html?animation=FDC_DeskHeight&project=Display Companion UI" target="_blank" class="animation-name">FDC Desk Height</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_DeskHeight" data-project="Display Companion UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Display%20Companion%20UI/FDC_DeskHeight.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1ggixDwRMezn-6hMsnbbP3tE7JVym4cA6/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -327,14 +360,13 @@
                         <a href="./index.html?animation=FDC_MainMenu&project=Display Companion UI" target="_blank" class="animation-name">FDC Main Menu</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_MainMenu" data-project="Display Companion UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Display%20Companion%20UI/FDC_MainMenu.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                         </div>
@@ -346,19 +378,18 @@
                         <a href="./index.html?animation=FDC_Privacy&project=Display Companion UI" target="_blank" class="animation-name">FDC Privacy</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_Privacy" data-project="Display Companion UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Display%20Companion%20UI/FDC_Privacy.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/16fLziYcLTx76Q_f4BKAy4CagoN5JlozE/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -370,19 +401,18 @@
                         <a href="./index.html?animation=FDC_Team&project=Display Companion UI" target="_blank" class="animation-name">FDC Team</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_Team" data-project="Display Companion UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Display%20Companion%20UI/FDC_Team.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/10BI3nFPaHfPKYZKscJVWWJvMGzjj1OG2/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -393,8 +423,8 @@
         <div class="project-card">
             <div class="project-header">
                 <h2>FHS Web Visuals</h2>
-                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
+                <svg class="toggle-icon">
+                    <use href="#icon-toggle"></use>
                 </svg>
             </div>
             <div class="animations">
@@ -404,19 +434,18 @@
                         <a href="./index.html?animation=FHS_HeightWeb&project=FHS Web Visuals" target="_blank" class="animation-name">FHS Height Web</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FHS_HeightWeb" data-project="FHS Web Visuals" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/FHS%20Web%20Visuals/FHS_HeightWeb.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1TsD0w4RyiD48lKoqOUTgpswpTH2jMdML/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -428,19 +457,18 @@
                         <a href="./index.html?animation=FHS_OccupancyWeb&project=FHS Web Visuals" target="_blank" class="animation-name">FHS Occupancy Web</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FHS_OccupancyWeb" data-project="FHS Web Visuals" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/FHS%20Web%20Visuals/FHS_OccupancyWeb.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1kuPkhkE9TKmZseG6mDzjIkHJTnfh9Z7l/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -451,8 +479,8 @@
         <div class="project-card">
             <div class="project-header">
                 <h2>Handset UI</h2>
-                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
+                <svg class="toggle-icon">
+                    <use href="#icon-toggle"></use>
                 </svg>
             </div>
             <div class="animations">
@@ -462,14 +490,13 @@
                         <a href="./index.html?animation=HandsetAlerts&project=Handset UI" target="_blank" class="animation-name">Handset Alerts</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="HandsetAlerts" data-project="Handset UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Handset%20UI/HandsetAlerts.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                         </div>
@@ -481,19 +508,18 @@
                         <a href="./index.html?animation=HandsetContacts&project=Handset UI" target="_blank" class="animation-name">Handset Contacts</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="HandsetContacts" data-project="Handset UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Handset%20UI/HandsetContacts.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1fgKAk7ZWM7zY9S4qbLOpwXnbJ5wMkmrh/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -505,19 +531,18 @@
                         <a href="./index.html?animation=HandsetMenu&project=Handset UI" target="_blank" class="animation-name">Handset Menu</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="HandsetMenu" data-project="Handset UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Handset%20UI/HandsetMenu.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/156dCFhzptw3bUWInJK4edYrRYp5vl1Z7/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -529,19 +554,18 @@
                         <a href="./index.html?animation=HandsetPrivacy&project=Handset UI" target="_blank" class="animation-name">Handset Privacy</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="HandsetPrivacy" data-project="Handset UI" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Handset%20UI/HandsetPrivacy.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1JaErNC5HqJWb40I8-Fu5CVlqaOz95J6Q/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -552,8 +576,8 @@
         <div class="project-card">
             <div class="project-header">
                 <h2>Height and Check In</h2>
-                <svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
+                <svg class="toggle-icon">
+                    <use href="#icon-toggle"></use>
                 </svg>
             </div>
             <div class="animations">
@@ -563,19 +587,18 @@
                         <a href="./index.html?animation=AppSitStand&project=Height and Check In" target="_blank" class="animation-name">App Sit Stand</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="AppSitStand" data-project="Height and Check In" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Height%20and%20Check%20In/AppSitStand.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1en77BXr4LMHiDhYPNrWZ_728gthN34hi/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -587,19 +610,18 @@
                         <a href="./index.html?animation=FDC_CardTag&project=Height and Check In" target="_blank" class="animation-name">FDC Card Tag</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_CardTag" data-project="Height and Check In" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Height%20and%20Check%20In/FDC_CardTag.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1FZW4FI0MYgMDeNs648YV1Tf5skpk5KbU/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -611,19 +633,18 @@
                         <a href="./index.html?animation=FDC_PhoneTag&project=Height and Check In" target="_blank" class="animation-name">FDC Phone Tag</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="FDC_PhoneTag" data-project="Height and Check In" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Height%20and%20Check%20In/FDC_PhoneTag.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1pcGsfIpOQPwLv8TVYaNq19hRuqQGoIvh/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -635,19 +656,18 @@
                         <a href="./index.html?animation=HandsetCardTag&project=Height and Check In" target="_blank" class="animation-name">Handset Card Tag</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="HandsetCardTag" data-project="Height and Check In" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Height%20and%20Check%20In/HandsetCardTag.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1fbLhyISUkCJt6lWJ97WsRJqdzmFj2r6E/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
@@ -659,19 +679,18 @@
                         <a href="./index.html?animation=HandsetPhoneTag&project=Height and Check In" target="_blank" class="animation-name">Handset Phone Tag</a>
                         <div class="action-buttons">
                             <button class="copy-link" data-animation="HandsetPhoneTag" data-project="Height and Check In" title="Copy link to animation">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                <svg class="icon">
+                                    <use href="#icon-copy-link"></use>
                                 </svg>
                             </button>
                             <button class="copy-json-link" data-json-url="https://josh-smartalock.github.io/lottie-fs/animations/Height%20and%20Check%20In/HandsetPhoneTag.json" title="Copy direct JSON link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
+                                <svg class="icon">
+                                    <use href="#icon-json"></use>
                                 </svg>
                             </button>
                             <a href="https://drive.google.com/file/d/1tIWzcfLQAqqudRLif-RDzyXf2Egk3a_c/view?usp=drivesdk" target="_blank" class="video-link" title="View video">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                <svg class="icon">
+                                    <use href="#icon-video"></use>
                                 </svg>
                             </a>
                         </div>
