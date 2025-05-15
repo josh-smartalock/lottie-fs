@@ -128,9 +128,9 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-            padding-right: 24px;
+            padding-right: 70px; /* Extended to fit three buttons */
         }
-        .copy-link {
+        .copy-link, .copy-json-link {
             background: none;
             border: none;
             cursor: pointer;
@@ -138,7 +138,7 @@
             padding: 3px;
             border-radius: 3px;
         }
-        .copy-link:hover {
+        .copy-link:hover, .copy-json-link:hover {
             background-color: #f0f0f0;
         }
         .copy-tooltip {
@@ -173,9 +173,6 @@
         }
         .video-link:hover {
             background-color: #f0f0f0;
-        }
-        .animation-name {
-            padding-right: 44px; /* Make room for both buttons */
         }
     </style>
 </head>
@@ -345,7 +342,28 @@
                     // Copy to clipboard
                     navigator.clipboard.writeText(fullUrl).then(() => {
                         // Show tooltip
-                        tooltip.textContent = 'Copied!';
+                        tooltip.textContent = 'Copied player link!';
+                        tooltip.style.opacity = '1';
+                        tooltip.style.left = (e.pageX + 10) + 'px';
+                        tooltip.style.top = (e.pageY + 10) + 'px';
+                        
+                        // Hide tooltip after a short delay
+                        setTimeout(() => {
+                            tooltip.style.opacity = '0';
+                        }, 1500);
+                    });
+                });
+            });
+            
+            // Add click handlers to JSON link copy buttons
+            document.querySelectorAll('.copy-json-link').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const jsonUrl = this.dataset.jsonUrl;
+                    
+                    // Copy to clipboard
+                    navigator.clipboard.writeText(jsonUrl).then(() => {
+                        // Show tooltip
+                        tooltip.textContent = 'Copied JSON link!';
                         tooltip.style.opacity = '1';
                         tooltip.style.left = (e.pageX + 10) + 'px';
                         tooltip.style.top = (e.pageY + 10) + 'px';

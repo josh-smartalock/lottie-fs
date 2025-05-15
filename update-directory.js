@@ -97,6 +97,7 @@ async function updateDirectory() {
       const animTitle = getTitleFromFilename(animName);
       const previewId = `preview-${projectFolder}-${animName}`;
       const animPath = `animations/${projectFolder}/${animName}.json`;
+      const jsonUrl = `https://josh-smartalock.github.io/lottie-fs/animations/${encodeURIComponent(projectFolder)}/${encodeURIComponent(animName)}.json`;
       
       // Check if there's a matching video file in the CSV
       const hasVideo = videoUrlMap.hasOwnProperty(animName);
@@ -112,6 +113,11 @@ async function updateDirectory() {
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                     <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                </svg>
+                            </button>
+                            <button class="copy-json-link" data-json-url="${jsonUrl}" title="Copy direct JSON link">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l2 18"></path>
                                 </svg>
                             </button>`;
       
