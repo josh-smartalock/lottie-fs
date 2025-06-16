@@ -28,6 +28,71 @@
             color: #0e1032;
             padding-bottom: 10px;
         }
+        
+        /* Info section styles */
+        .info-section {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .info-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 0;
+            width: 24px;
+            height: 24px;
+        }
+        
+        .info-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .info-icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .info-content {
+            border-radius: 15px;
+            max-width: 60%;
+            background-color: rgb(231, 231, 231);
+            padding: 1%;
+            margin-top: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .info-section.collapsed .info-content {
+            height: 0 !important;
+            opacity: 0;
+            margin-top: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .info-content p {
+            margin-top: 0;
+        }
+        
+        .info-content ul {
+            margin-bottom: 0;
+        }
+        
+        .inline-icon {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+        
         .projects {
             display: flex;
             flex-direction: column;
@@ -219,6 +284,28 @@
         <img src="https://images.squarespace-cdn.com/content/5c2c8ec3297114a6e7b4685a/4e2b9a1d-c1d8-473f-8654-60f058b58d15/OutofBox.png?content-type=image%2Fpng">
         <h1>FS Animation Directory</h1>
     </div>
+    
+    <!-- Collapsible info section -->
+    <div class="info-section collapsed">
+        <button class="info-toggle" onclick="toggleInfo()">
+            <svg class="info-icon" viewBox="0 0 62.4043247908 62.4043247908">
+                <circle fill="#14b1e1" cx="31.2021623954" cy="31.2021623954" r="31.2021623954"/>
+                <circle fill="#fff" cx="32.0252914868" cy="11.4147676876" r="6.4276644228"/>
+                <path fill="#fff" d="M20.2533330328,23.2588600234c1.2599587818-.6986781903,2.6639762737-.5030424588,4.6920681989-.6052471435,1.4452408213-.0246974515,3.0614645394-.0262138798,4.5754049956-.0097144747,2.2140723919.1172996056,5.5773796577-.2818548878,6.8277611593,1.2052189768,3.2985262704,3.5311689614-4.6122061779,20.8649902736-2.1671718684,24.8807261375.6350250867.9639900974,2.2221548305.8694318412,3.3830887491.9330189224,1.3416678544-.0035331044,2.7545280547.7240777343,1.7944783673,2.2643395158-1.8618872901,2.3856038604-5.6467055947,3.0496683826-8.6280590053,3.1437523036-5.9475943139.1217818131-10.0301726123-4.5942223151-9.00444741-10.4393598417.6029819944-4.4728740832,1.6536449851-8.8724152016,2.3977728329-13.3235411139.2235252765-1.380650252.3812266842-3.0327556256-.7164579083-4.0833619114-1.0289120805-1.0725808043-3.0631773525-1.1812229824-3.7055744947-2.4780226853-.2461462556-.5412750667.0035225611-1.1237152291.4925304033-1.4484924702l.0586059804-.0393162155Z"/>
+            </svg>
+        </button>
+        <div class="info-content">
+            <p>These animations are in <a href="https://en.wikipedia.org/wiki/Lottie_(file_format)" target="_blank">Lottie</a> format. Lottie files are really efficient, but fiddly to use – they're stored in JSON format, so you can't really download and play them locally. This site gives you a few different options:
+            </p>
+            <ul>
+                <li><strong>View animations in your browser</strong> by clicking on the title, or quickly copy the link with <svg class="inline-icon"><use href="#icon-copy-link"></use></svg>.</li>
+                <li><strong>Notion supports Lottie natively</strong> – just copy the relevant link with <svg class="inline-icon"><use href="#icon-copy-link"></use></svg>, then use "/embed" in Notion and paste the link.</li>
+                <li><strong>For other contexts like Powerpoint</strong>, or if you want to share the file directly, you can view and download any animation in .mp4 format with <svg class="inline-icon"><use href="#icon-video"></use></svg>.</li>
+                <li>Disregard <svg class="inline-icon"><use href="#icon-json"></use></svg> unless you need the direct JSON link.</li>
+            </ul>
+        </div>
+    </div>
+    
     <div class="projects">
         
         <div class="project-card">
@@ -775,6 +862,12 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
     <script>
+        // Function to toggle the info section
+        function toggleInfo() {
+            const infoSection = document.querySelector('.info-section');
+            infoSection.classList.toggle('collapsed');
+        }
+        
         // Function to load and display animation with duration in the title
         function setupHoverAnimation(jsonPath, containerId) {
             const container = document.getElementById(containerId);
