@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const csv = require('csv-parser'); // We'll use csv-parser to read the CSV file
+const csv = require('csv-parser'); // Read CSV file
 
 // Config
 const ANIMATIONS_DIR = 'animations';
@@ -8,29 +8,23 @@ const TEMPLATE_PATH = 'directory-template.html';
 const OUTPUT_PATH = 'directory.html';
 const VIDEO_CSV_PATH = 'animation_files.csv';
 
-// Function to get animation titles from filenames
+// Get animation titles from filenames
 function getTitleFromFilename(filename) {
-  // Remove extension
+  // Filename formatting various
   let title = path.basename(filename, '.json');
-
-  // Insert space before capital letters that follow a lowercase letter
   title = title.replace(/([a-z])([A-Z])/g, '$1 $2');
-
-  // Convert dashes/underscores to spaces
   title = title.replace(/[-_]/g, ' ');
-
-  // Capitalize the first letter of each word
   title = title.replace(/\b\w/g, l => l.toUpperCase());
 
   return title;
 }
 
-// Parse the CSV file to create a mapping of filenames to video URLs
+// Match filenames to video URLs
 async function getVideoUrlMapping() {
   return new Promise((resolve, reject) => {
     const results = {};
     
-    // Check if the CSV file exists
+    // Check CSV file 
     if (!fs.existsSync(VIDEO_CSV_PATH)) {
       console.log(`Video CSV file ${VIDEO_CSV_PATH} not found. Continuing without video links.`);
       return resolve(results);
@@ -39,7 +33,8 @@ async function getVideoUrlMapping() {
     fs.createReadStream(VIDEO_CSV_PATH)
       .pipe(csv())
       .on('data', (data) => {
-        // Extract filename without extension and map to web address
+
+        // Extract filename and map to url
         const filename = path.basename(data['File Name'], path.extname(data['File Name']));
         results[filename] = data['Web Address'];
       })
