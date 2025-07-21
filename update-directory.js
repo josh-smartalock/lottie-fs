@@ -59,51 +59,31 @@ function organizeAnimationsByDirectory(animations) {
   return organized;
 }
 
-// Create a hierarchical structure for nested folders
-function createHierarchicalStructure(organized) {
-  const hierarchy = {};
-  
-  for (const [dirPath, animations] of Object.entries(organized)) {
-    if (dirPath === '.') {
-      // Root level animations
-      hierarchy['Root'] = animations;
-      continue;
-    }
-    
-    const pathParts = dirPath.split(path.sep);
-    let current = hierarchy;
-    
-    // Build nested structure
-    for (let i = 0; i < pathParts.length; i++) {
-      const part = pathParts[i];
-      if (!current[part]) {
-        if (i === pathParts.length - 1) {
-          // Last part - add animations
-          current[part] = animations;
-        } else {
-          // Intermediate part - create nested object
-          current[part] = {};
-        }
-      }
-      current = current[part];
-    }
-  }
-  
-  return hierarchy;
-}
-
-// Generate HTML for a nested structure
-function generateNestedHTML(structure, parentPath = '', videoUrlMap = {}, level = 0) {
+// Generate HTML for flattened structure (compatible with existing template)
+function generateFlattenedHTML(organized, videoUrlMap = {}) {
   let html = '';
   
-  for (const [name, content] of Object.entries(structure)) {
-    if (Array.isArray(content)) {
-      // This is a folder with animations
-      const currentPath = parentPath ? `${parentPath}/${name}` : name;
-      const displayName = name === 'Root' ? 'Root Animations' : name;
-      
-      html += `
-        <div class="project-card" style="margin-left: ${level * 20}px;">
+  // Sort directories to show root first, then alphabetically
+  const sortedDirs = Object.keys(organized).sort((a, b) => {
+    if (a === '.') return -1;
+    if (b === '.') return 1;
+    return a.localeCompare(b);
+  });
+  
+  for (const dirPath of sortedDirs) {
+    const animations = organized[dirPath];
+    
+    // Create display name for the project
+    let displayName;
+    if (dirPath === '.') {
+      displayName = 'Root Animations';
+    } else {
+      // For nested paths, show the full path with nice formatting
+      displayName = dirPath.split('/').join(' > ');
+    }
+    
+    html += `
+        <div class="project-card">
             <div class="project-header">
                 <h2>${displayName}</h2>
                 <svg class="toggle-icon">
@@ -111,24 +91,24 @@ function generateNestedHTML(structure, parentPath = '', videoUrlMap = {}, level 
                 </svg>
             </div>
             <div class="animations">`;
+    
+    // Add each animation in this folder
+    for (const anim of animations) {
+      const animName = path.basename(anim.filename, '.json');
+      const animTitle = getTitleFromFilename(animName);
+      const previewId = `preview-${dirPath.replace(/[\/\\\.]/g, '-')}-${animName}`;
+      const animPath = `animations/${anim.relativePath}`;
+      const encodedRelativePath = anim.relativePath.split('/').map(encodeURIComponent).join('/');
+      const jsonUrl = `https://josh-smartalock.github.io/lottie-fs/animations/${encodedRelativePath}`;
       
-      // Add each animation in this folder
-      for (const anim of content) {
-        const animName = path.basename(anim.filename, '.json');
-        const animTitle = getTitleFromFilename(animName);
-        const previewId = `preview-${currentPath.replace(/[\/\\]/g, '-')}-${animName}`;
-        const animPath = `animations/${anim.relativePath}`;
-        const encodedRelativePath = anim.relativePath.split('/').map(encodeURIComponent).join('/');
-        const jsonUrl = `https://josh-smartalock.github.io/lottie-fs/animations/${encodedRelativePath}`;
-        
-        // For URL parameters, we need the project path (excluding the filename)
-        const projectPath = anim.directory === '.' ? '' : anim.directory;
-        
-        // Check if there's a matching video file in the CSV
-        const hasVideo = videoUrlMap.hasOwnProperty(animName);
-        const videoUrl = hasVideo ? videoUrlMap[animName] : '';
-        
-        html += `
+      // For URL parameters, we need the project path (excluding the filename)
+      const projectPath = anim.directory === '.' ? '' : anim.directory;
+      
+      // Check if there's a matching video file in the CSV
+      const hasVideo = videoUrlMap.hasOwnProperty(animName);
+      const videoUrl = hasVideo ? videoUrlMap[animName] : '';
+      
+      html += `
                 <div class="animation-item">
                     <div class="preview" id="${previewId}" data-animation-path="${animPath}"></div>
                     <div class="animation-details">
@@ -144,30 +124,26 @@ function generateNestedHTML(structure, parentPath = '', videoUrlMap = {}, level 
                                     <use href="#icon-json"></use>
                                 </svg>
                             </button>`;
-        
-        // Add video link arrow if there's a matching video
-        if (hasVideo) {
-          html += `
+      
+      // Add video link arrow if there's a matching video
+      if (hasVideo) {
+        html += `
                             <a href="${videoUrl}" target="_blank" class="video-link" title="View video">
                                 <svg class="icon">
                                     <use href="#icon-video"></use>
                                 </svg>
                             </a>`;
-        }
-        
-        html += `
-                        </div>
-                    </div>
-                </div>`;
       }
       
       html += `
+                        </div>
+                    </div>
+                </div>`;
+    }
+    
+    html += `
             </div>
         </div>`;
-    } else {
-      // This is a nested folder structure
-      html += generateNestedHTML(content, parentPath ? `${parentPath}/${name}` : name, videoUrlMap, level + 1);
-    }
   }
   
   return html;
@@ -224,11 +200,8 @@ async function updateDirectory() {
   // Organize animations by directory
   const organizedAnimations = organizeAnimationsByDirectory(allAnimations);
   
-  // Create hierarchical structure
-  const hierarchy = createHierarchicalStructure(organizedAnimations);
-  
-  // Generate HTML for the nested structure
-  const projectCardsHtml = generateNestedHTML(hierarchy, '', videoUrlMap);
+  // Generate HTML for flattened structure (compatible with existing template)
+  const projectCardsHtml = generateFlattenedHTML(organizedAnimations, videoUrlMap);
   
   // Replace placeholders in template
   let outputHtml = template
